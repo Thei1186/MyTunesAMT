@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mytunesamt;
+package mytunesamt.GUI.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,9 +16,10 @@ import javafx.scene.control.TextField;
 /**
  * FXML Controller class
  *
- * @author michaellemmiche
+ * @author Asvør
  */
-public class NewEditSongController implements Initializable {
+public class NewEditSongController implements Initializable
+{
 
     @FXML
     private TextField txtTitle;
@@ -39,7 +40,8 @@ public class NewEditSongController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
     }    
     

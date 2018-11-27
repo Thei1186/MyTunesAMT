@@ -7,37 +7,33 @@ package mytunesamt.GUI.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
  *
- * @author michaellemmiche
+ * @author Asvør
  */
-public class FXMLDocumentController implements Initializable {
+public class NewEditPlayController implements Initializable
+{
 
     @FXML
-    private Label label;
+    private TextField txtPlaylistName;
     @FXML
-    private Button button;
+    private Button btncancelPlaylist;
+    @FXML
+    private Button btnSavePlaylist;
 
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
     }    
-
-    @FXML
-    private void handleButtonAction(ActionEvent event)
-    {
-    }
     
 }

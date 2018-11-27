@@ -3,23 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mytunesamt;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
  *
  * @author michaellemmiche
  */
-public class DeleteWindowController implements Initializable {
+public class NewEditSongController implements Initializable {
 
     @FXML
-    private AnchorPane btnDeleteFinal;
+    private TextField txtTitle;
+    @FXML
+    private TextField TxtArtist;
+    @FXML
+    private TextField txtFile;
+    @FXML
+    private ComboBox<?> comboCategory;
+    @FXML
+    private Button btnChoose;
+    @FXML
+    private Button btnCancelNewSong;
+    @FXML
+    private Button btnSaveSong;
 
     /**
      * Initializes the controller class.
