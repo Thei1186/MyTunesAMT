@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="516.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.181" fx:controller="mytunesamt.NewEditPlayController">
+<AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="516.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.181" fx:controller="mytunesamt.GUI.Controller.NewEditPlayController">
    <children>
       <Label layoutX="147.0" layoutY="14.0" text="New/Edit playlist">
          <font>

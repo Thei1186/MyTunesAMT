@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane id="AnchorPane" fx:id="btnDeleteFinal" prefHeight="156.0" prefWidth="383.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.181" fx:controller="mytunesamt.DeleteWindowController">
+<AnchorPane id="AnchorPane" fx:id="btnDeleteFinal" prefHeight="156.0" prefWidth="383.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.181" fx:controller="mytunesamt.GUI.Controller.DeleteWindowController">
    <children>
       <Label layoutX="50.0" layoutY="22.0" prefHeight="42.0" prefWidth="283.0" text="Are you sure you want to delete this song?" />
       <Button layoutX="156.0" layoutY="95.0" mnemonicParsing="false" text="Delete" />
