@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.181" fx:controller="mytunesamt.GUI.Controller.NewEditSongController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunesamt.GUI.Controller.NewEditSongController">
    <children>
       <Label layoutX="206.0" layoutY="14.0" text="New/Edit song">
          <font>
@@ -24,7 +23,7 @@
       <TextField fx:id="txtFile" layoutX="161.0" layoutY="286.0" prefHeight="31.0" prefWidth="318.0" />
       <ComboBox fx:id="comboCategory" layoutX="161.0" layoutY="196.0" prefHeight="31.0" prefWidth="406.0" />
       <Button fx:id="btnChoose" layoutX="499.0" layoutY="286.0" mnemonicParsing="false" text="Choose.." />
-      <Button fx:id="btnCancelNewSong" layoutX="435.0" layoutY="355.0" mnemonicParsing="false" text="Cancel" />
-      <Button fx:id="btnSaveSong" layoutX="525.0" layoutY="355.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="btnCancelNewSong" layoutX="435.0" layoutY="355.0" mnemonicParsing="false" onAction="#cancelNewSong" text="Cancel" />
+      <Button fx:id="btnSaveSong" layoutX="525.0" layoutY="355.0" mnemonicParsing="false" onAction="#saveSongClick" text="Save" />
    </children>
 </AnchorPane>

@@ -90,8 +90,8 @@ public class FXMLDocumentController implements Initializable
         Stage stageDelete = new Stage();
         stageDelete.setScene(new Scene(root));
         
-        //stageDelete.initModality(Modality.WINDOW_MODAL);
-        //stageDelete.initOwner(primeStage);
+        stageDelete.initModality(Modality.WINDOW_MODAL);
+        stageDelete.initOwner(primeStage);
         
         stageDelete.show();
     }
@@ -115,7 +115,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void deleteSong(ActionEvent event) throws IOException
     {
-        Stage stage;
+        /*Stage stage;
         
         Parent root;
         
@@ -132,7 +132,7 @@ public class FXMLDocumentController implements Initializable
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();
+        stage.show();*/
     }
 
     @FXML

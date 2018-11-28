@@ -7,6 +7,6 @@
 <AnchorPane id="AnchorPane" prefHeight="156.0" prefWidth="383.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunesamt.GUI.Controller.DeleteWindowController">
    <children>
       <Label layoutX="50.0" layoutY="22.0" prefHeight="42.0" prefWidth="283.0" text="Are you sure you want to delete this song?" />
-      <Button fx:id="btnDeleteFinal" layoutX="156.0" layoutY="95.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="btnDeleteFinal" layoutX="156.0" layoutY="95.0" mnemonicParsing="false" onAction="#secondDeleteClick" text="Delete" />
    </children>
 </AnchorPane>
