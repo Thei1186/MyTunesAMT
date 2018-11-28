@@ -9,7 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -20,7 +20,7 @@ public class DeleteWindowController implements Initializable
 {
 
     @FXML
-    private AnchorPane btnDeleteFinal;
+    private Button btnDeleteFinal;
 
     /**
      * Initializes the controller class.

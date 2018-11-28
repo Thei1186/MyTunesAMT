@@ -23,5 +23,6 @@
 hs_err_pid*
 /dist/
 /build/
-/Database_Settings.txt
 *.properties
+/Database_Settings.txt
+/Sange/
