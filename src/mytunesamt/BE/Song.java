@@ -14,20 +14,7 @@ public class Song
     private String title;
     private String artist;
     private String category;
-    private String location;
-    private final int id;
 
-    public Song(String title, String artist, String category, String location, int id)
-    {
-        this.title = title;
-        this.artist = artist;
-        this.category = category;
-        this.location = location;
-        this.id = id;
-    }
-    
-    
-    
     public String getTitle()
     {
         return title;
@@ -56,15 +43,5 @@ public class Song
     public void setCategory(String category)
     {
         this.category = category;
-    }
-
-    public String getLocation()
-    {
-        return location;
-    }
-
-    public void setLocation(String location)
-    {
-        this.location = location;
     }
 }
