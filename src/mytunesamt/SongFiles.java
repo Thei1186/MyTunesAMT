@@ -19,9 +19,6 @@ public class SongFiles
     
     public void init()
     {
-        final URL resource = getClass().getResource("src\\AdventureTime Ending Theme.mp3");
-        final Media media = new Media (resource.toString());
-        final MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.play();
+        
     }
 }
