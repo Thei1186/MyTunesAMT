@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 
 /**
@@ -54,6 +55,16 @@ public class FXMLDocumentController implements Initializable
     private Label lblsong;
     @FXML
     private Button btnPlaySong;
+    @FXML
+    private Button btnprevious;
+    @FXML
+    private Button btnNext;
+    @FXML
+    private Button btnStop;
+    @FXML
+    private Button btnPause;
+    @FXML
+    private Slider slideVolume;
 
     /**
      * Initializes the controller class.

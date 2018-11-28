@@ -21,7 +21,7 @@ public class MyTunesAMT extends Application
     @Override
     public void start(Stage stage) throws Exception
     {
-        Parent root = FXMLLoader.load(getClass().getResource("GUI/View/DeleteWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("GUI/View/Document.fxml"));
         
         Scene scene = new Scene(root);
         

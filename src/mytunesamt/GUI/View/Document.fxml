@@ -4,11 +4,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="713.0" prefWidth="1023.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.181" fx:controller="mytunesamt.GUI.Controller.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="713.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunesamt.GUI.Controller.FXMLDocumentController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <ListView fx:id="listAllSongs" layoutX="37.0" layoutY="141.0" prefHeight="447.0" prefWidth="273.0" />
@@ -35,8 +36,14 @@
       <Button fx:id="btnAddToPlay" layoutX="719.0" layoutY="597.0" mnemonicParsing="false" text="Add to playlist" />
       <Button fx:id="btnSearch" layoutX="712.0" layoutY="39.0" mnemonicParsing="false" text="Search" />
       <TextField fx:id="txtSearch" layoutX="795.0" layoutY="39.0" />
-      <Label layoutX="351.0" layoutY="515.0" text="now playing" />
-      <Label fx:id="lblsong" layoutX="462.0" layoutY="515.0" prefHeight="21.0" prefWidth="209.0" />
-      <Button fx:id="btnPlaySong" layoutX="425.0" layoutY="597.0" mnemonicParsing="false" text="Play song" />
+      <Label layoutX="351.0" layoutY="505.0" text="now playing" />
+      <Label fx:id="lblsong" layoutX="462.0" layoutY="505.0" prefHeight="21.0" prefWidth="209.0" />
+      <Button fx:id="btnPlaySong" layoutX="453.0" layoutY="545.0" mnemonicParsing="false" text="Play song" />
+      <Button fx:id="btnprevious" layoutX="351.0" layoutY="597.0" mnemonicParsing="false" text="previous" />
+      <Button fx:id="btnNext" layoutX="612.0" layoutY="597.0" mnemonicParsing="false" text="next" />
+      <Button fx:id="btnStop" layoutX="447.0" layoutY="597.0" mnemonicParsing="false" text="stop" />
+      <Button fx:id="btnPause" layoutX="523.0" layoutY="597.0" mnemonicParsing="false" text="pause" />
+      <Slider fx:id="slideVolume" layoutX="425.0" layoutY="665.0" />
+      <Label layoutX="473.0" layoutY="644.0" text="volume" />
     </children>
 </AnchorPane>
