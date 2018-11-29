@@ -34,7 +34,7 @@ public class NewEditSongController implements Initializable
     @FXML
     private TextField txtTitle;
     @FXML
-    private TextField TxtArtist;
+    private TextField txtArtist;
     @FXML
     private TextField txtFile;
     @FXML
@@ -75,6 +75,7 @@ public class NewEditSongController implements Initializable
         Parent root = loader.load();
       
         primeStage.show();
+         
     }
 
     @FXML

@@ -61,6 +61,9 @@ public class NewEditPlayController implements Initializable
         Parent root = loader.load();
         
         primeStage.show();
+        
+        String inputTemp = String.valueOf(txtPlaylistName.getText());
+        System.out.println(" " + inputTemp);
     }
     
 }
