@@ -61,13 +61,13 @@ public class NewEditSongController implements Initializable
         
         //DeleteWindowController deleteWindowController = loader.getController();
         
-        Stage stageDelete = new Stage();
+        /*Stage stageDelete = new Stage();
         stageDelete.setScene(new Scene(root));
         
         stageDelete.initModality(Modality.WINDOW_MODAL);
-        stageDelete.initOwner(primeStage);
+        stageDelete.initOwner(primeStage);*/
         
-        stageDelete.show();
+        primeStage.show();
     }
 
     @FXML
@@ -79,13 +79,8 @@ public class NewEditSongController implements Initializable
         
         //DeleteWindowController deleteWindowController = loader.getController();
         
-        Stage stageDelete = new Stage();
-        stageDelete.setScene(new Scene(root));
         
-        stageDelete.initModality(Modality.WINDOW_MODAL);
-        stageDelete.initOwner(primeStage);
-        
-        stageDelete.show();
+        primeStage.show();
     }
     
 }
