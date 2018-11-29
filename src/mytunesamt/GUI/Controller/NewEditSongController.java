@@ -64,14 +64,6 @@ public class NewEditSongController implements Initializable
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
         Parent root = loader.load();
         
-        //DeleteWindowController deleteWindowController = loader.getController();
-        
-        /*Stage stageDelete = new Stage();
-        stageDelete.setScene(new Scene(root));
-        
-        stageDelete.initModality(Modality.WINDOW_MODAL);
-        stageDelete.initOwner(primeStage);*/
-        
         primeStage.show();
     }
 
@@ -81,10 +73,7 @@ public class NewEditSongController implements Initializable
         Stage primeStage = (Stage)btnSaveSong.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
         Parent root = loader.load();
-        
-        //DeleteWindowController deleteWindowController = loader.getController();
-        
-        
+      
         primeStage.show();
     }
 

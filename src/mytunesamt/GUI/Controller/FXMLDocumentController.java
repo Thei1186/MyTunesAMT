@@ -123,4 +123,55 @@ public class FXMLDocumentController implements Initializable
 
     }
 
+    @FXML
+    private void newEditPlaylist(ActionEvent event) throws IOException
+    {
+        Stage secondStage = (Stage) btnNewPlay.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/NewEditPlay.fxml"));
+        Parent root = loader.load();
+
+        Stage stageNewSong = new Stage();
+        stageNewSong.setScene(new Scene(root));
+
+        stageNewSong.initModality(Modality.WINDOW_MODAL);
+        stageNewSong.initOwner(secondStage);
+        stageNewSong.show();
+    }
+
+    @FXML
+    private void deletePlaylist(ActionEvent event) throws IOException
+    {
+        Stage primeStage = (Stage) btnDeletePlay.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/DeleteWindow.fxml"));
+        Parent root = loader.load();
+
+        Stage stageNewSong = new Stage();
+        stageNewSong.setScene(new Scene(root));
+
+        stageNewSong.initModality(Modality.WINDOW_MODAL);
+        stageNewSong.initOwner(primeStage);
+        stageNewSong.show();
+    }
+
+    @FXML
+    private void addToPlaylist(ActionEvent event) throws IOException
+    {
+        
+    }
+
+    @FXML
+    private void deleteFromPlaylist(ActionEvent event) throws IOException
+    {
+        Stage primeStage = (Stage) btnDeleteFromPlay.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/DeleteWindow.fxml"));
+        Parent root = loader.load();
+
+        Stage stageNewSong = new Stage();
+        stageNewSong.setScene(new Scene(root));
+
+        stageNewSong.initModality(Modality.WINDOW_MODAL);
+        stageNewSong.initOwner(primeStage);
+        stageNewSong.show();
+    }
+
 }
