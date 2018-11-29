@@ -32,7 +32,7 @@
       <Button fx:id="btnDeleteFromPlay" layoutX="919.0" layoutY="597.0" mnemonicParsing="false" onAction="#deleteFromPlaylist" text="Delete" />
       <Button fx:id="btnDeletePlay" layoutX="479.0" layoutY="453.0" mnemonicParsing="false" onAction="#deletePlaylist" text="Delete" />
       <Button fx:id="btnAddToPlay" layoutX="719.0" layoutY="597.0" mnemonicParsing="false" onAction="#addToPlaylist" text="Add to playlist" />
-      <Button fx:id="btnSearch" layoutX="712.0" layoutY="39.0" mnemonicParsing="false" text="Search" />
+      <Button fx:id="btnSearch" layoutX="712.0" layoutY="39.0" mnemonicParsing="false" onAction="#searchSongs" text="Search" />
       <TextField fx:id="txtSearch" layoutX="795.0" layoutY="39.0" />
       <Label layoutX="351.0" layoutY="515.0" text="now playing" />
       <Label fx:id="lblsong" layoutX="462.0" layoutY="515.0" prefHeight="21.0" prefWidth="209.0" />

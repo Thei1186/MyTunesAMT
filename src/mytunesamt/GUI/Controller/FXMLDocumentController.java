@@ -136,6 +136,8 @@ public class FXMLDocumentController implements Initializable
         stageNewSong.initModality(Modality.WINDOW_MODAL);
         stageNewSong.initOwner(secondStage);
         stageNewSong.show();
+        
+        
     }
 
     @FXML
@@ -172,6 +174,13 @@ public class FXMLDocumentController implements Initializable
         stageNewSong.initModality(Modality.WINDOW_MODAL);
         stageNewSong.initOwner(primeStage);
         stageNewSong.show();
+    }
+
+    @FXML
+    private void searchSongs(ActionEvent event)
+    {
+         String inputTemp = String.valueOf(txtSearch.getText());
+         System.out.println(" " + inputTemp);
     }
 
 }
