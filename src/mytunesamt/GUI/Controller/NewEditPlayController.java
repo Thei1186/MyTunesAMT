@@ -5,12 +5,19 @@
  */
 package mytunesamt.GUI.Controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -23,9 +30,9 @@ public class NewEditPlayController implements Initializable
     @FXML
     private TextField txtPlaylistName;
     @FXML
-    private Button btncancelPlaylist;
-    @FXML
     private Button btnSavePlaylist;
+    @FXML
+    private Button btnCancelPlaylist;
 
     /**
      * Initializes the controller class.
@@ -35,5 +42,37 @@ public class NewEditPlayController implements Initializable
     {
         // TODO
     }    
+
+    @FXML
+    private void cancelPlaylistClick(ActionEvent event) throws IOException
+    {
+        Stage primeStage = (Stage)btnCancelPlaylist.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
+        Parent root = loader.load();
+                
+        Stage stageDelete = new Stage();
+        stageDelete.setScene(new Scene(root));
+        
+        stageDelete.initModality(Modality.WINDOW_MODAL);
+        stageDelete.initOwner(primeStage);
+        
+        stageDelete.show();
+    }
+
+    @FXML
+    private void savePlaylistClick(ActionEvent event) throws IOException
+    {
+        Stage primeStage = (Stage)btnSavePlaylist.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
+        Parent root = loader.load();
+        
+        Stage stageDelete = new Stage();
+        stageDelete.setScene(new Scene(root));
+        
+        stageDelete.initModality(Modality.WINDOW_MODAL);
+        stageDelete.initOwner(primeStage);
+        
+        stageDelete.show();
+    }
     
 }
