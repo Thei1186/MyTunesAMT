@@ -5,6 +5,7 @@
  */
 package mytunesamt;
 
+import java.io.File;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,9 +22,11 @@ public class MyTunesAMT extends Application
     @Override
     public void start(Stage stage) throws Exception
     {
+     
         Parent root = FXMLLoader.load(getClass().getResource("GUI/View/Document.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setTitle("Best MyTunes Ever - no bias");
         stage.show();
     }
     

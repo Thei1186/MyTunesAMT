@@ -1,10 +1,11 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package mytunesamt.GUI.Controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,6 +22,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import mytunesamt.AudioPlayer;
 
 /**
  * FXML Controller class
@@ -76,39 +78,36 @@ public class FXMLDocumentController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-    }    
-
+    }
 
     private void DeleteSong(ActionEvent event) throws IOException
     {
-        Stage primeStage = (Stage)btnDeleteSong.getScene().getWindow();
+        Stage primeStage = (Stage) btnDeleteSong.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/DeleteWindow.fxml"));
         Parent root = loader.load();
-        
+
         //DeleteWindowController deleteWindowController = loader.getController();
-        
         Stage stageDelete = new Stage();
         stageDelete.setScene(new Scene(root));
-        
+
         stageDelete.initModality(Modality.WINDOW_MODAL);
         stageDelete.initOwner(primeStage);
-        
+
         stageDelete.show();
     }
 
     @FXML
     private void clickNewEdit(ActionEvent event) throws IOException
     {
-        Stage secondStage = (Stage)btnNewSong.getScene().getWindow();
+        Stage secondStage = (Stage) btnNewSong.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/NewEditSong.fxml"));
         Parent root = loader.load();
-        
+
         Stage stageNewSong = new Stage();
         stageNewSong.setScene(new Scene(root));
-        
+
         //stageNewSong.initModality(Modality.WINDOW_MODAL);
         //stageNewSong.initOwner(secondStage);
-        
         stageNewSong.show();
     }
 
@@ -138,6 +137,10 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void playSong(ActionEvent event)
     {
+        File file = new File("Sange/AdventureTime Theme.mp3");
+        AudioPlayer ap = new AudioPlayer(file.toURI().toString());
+        ap.mediaPlayer.play();
+
     }
-    
+
 }

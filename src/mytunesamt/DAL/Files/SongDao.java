@@ -3,22 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mytunesamt;
-
-import java.net.URL;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+package mytunesamt.DAL.Files;
 
 /**
  *
- * @author Asvør
+ * @author kokus
  */
-public class SongFiles
+public class SongDao
 {
     
-    
-    public void init()
-    {
-        
-    }
 }
