@@ -5,6 +5,7 @@
  */
 package mytunesamt.GUI.Controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -42,6 +45,8 @@ public class NewEditSongController implements Initializable
     private Button btnCancelNewSong;
     @FXML
     private Button btnSaveSong;
+    @FXML
+    private AnchorPane rootPane2;
 
     /**
      * Initializes the controller class.
@@ -59,14 +64,6 @@ public class NewEditSongController implements Initializable
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
         Parent root = loader.load();
         
-        //DeleteWindowController deleteWindowController = loader.getController();
-        
-        /*Stage stageDelete = new Stage();
-        stageDelete.setScene(new Scene(root));
-        
-        stageDelete.initModality(Modality.WINDOW_MODAL);
-        stageDelete.initOwner(primeStage);*/
-        
         primeStage.show();
     }
 
@@ -76,11 +73,17 @@ public class NewEditSongController implements Initializable
         Stage primeStage = (Stage)btnSaveSong.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
         Parent root = loader.load();
-        
-        //DeleteWindowController deleteWindowController = loader.getController();
-        
-        
+      
         primeStage.show();
+    }
+
+    @FXML
+    private void chooseFile(ActionEvent event)
+    {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Music File");
+        Stage stage = (Stage) rootPane2.getScene().getWindow();
+        File mediafile = fileChooser.showOpenDialog(stage);
     }
     
 }

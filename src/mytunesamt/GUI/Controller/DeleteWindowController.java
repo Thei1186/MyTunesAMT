@@ -8,14 +8,14 @@ package mytunesamt.GUI.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -29,15 +29,25 @@ public class DeleteWindowController implements Initializable
     @FXML
     private Button btnDeleteFinal;
 
+    @FXML
+    private void secondDeleteClick(ActionEvent event) throws IOException
+    {
+        Stage primeStage = (Stage)btnDeleteFinal.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
+        Parent root = loader.load();
+    }  
+    
+    
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
-    }    
+        
+    }
 
-    
-    
 }
