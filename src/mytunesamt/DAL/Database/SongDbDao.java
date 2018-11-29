@@ -5,11 +5,28 @@
  */
 package mytunesamt.DAL.Database;
 
+import java.io.IOException;
+import mytunesamt.BE.Song;
+
 /**
  *
  * @author kokus
  */
 public class SongDbDao
 {
-    
+
+    DbConnectionProvider ds;
+
+    public SongDbDao() throws IOException
+    {
+        DbConnectionProvider ds = new DbConnectionProvider();
+
+    }
+
+    public void addSong(Song song)
+    {
+        String artist = song.getArtist();
+        String title = song.getTitle();
+        String location = song.getLocation();
+    }
 }
