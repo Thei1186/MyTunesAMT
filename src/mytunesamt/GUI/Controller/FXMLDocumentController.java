@@ -80,7 +80,8 @@ public class FXMLDocumentController implements Initializable
         // TODO
     }
 
-    private void DeleteSong(ActionEvent event) throws IOException
+    @FXML
+    private void deleteSong(ActionEvent event) throws IOException
     {
         Stage primeStage = (Stage) btnDeleteSong.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/DeleteWindow.fxml"));
@@ -111,28 +112,7 @@ public class FXMLDocumentController implements Initializable
         stageNewSong.show();
     }
 
-    @FXML
-    private void deleteSong(ActionEvent event) throws IOException
-    {
-        /*Stage stage;
-        
-        Parent root;
-        
-        if (event.getSource() == btnNewSong)
-        {
-            stage = (Stage) btnNewSong.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/mytunesamt/GUI/View/NewEditSong.fxml"));
-            
-        }
-        else
-        {
-            stage = (Stage) btnDeleteSong.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("/mytunesamt/GUI/View/DeleteWindow.fxml"));
-        }
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();*/
-    }
+    
 
     @FXML
     private void playSong(ActionEvent event)
