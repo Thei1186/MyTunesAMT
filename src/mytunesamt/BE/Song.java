@@ -17,11 +17,10 @@ public class Song
     private String location;
     private final int id;
 
-    public Song(String title, String artist, String category, String location, int id)
+    public Song(String title, String artist, String location, int id)
     {
         this.title = title;
         this.artist = artist;
-        this.category = category;
         this.location = location;
         this.id = id;
     }
@@ -66,5 +65,10 @@ public class Song
     public void setLocation(String location)
     {
         this.location = location;
+    }
+
+    public int getId()
+    {
+        return id;
     }
 }

@@ -14,7 +14,7 @@ import mytunesamt.DAL.Database.SongDbDao;
  *
  * @author kokus
  */
-public class tunesManager
+public class TunesManager
 {
 
     PlaylistDbDao pLDbDao = new PlaylistDbDao();
