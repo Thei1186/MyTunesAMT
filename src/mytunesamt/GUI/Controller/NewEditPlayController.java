@@ -50,7 +50,7 @@ public class NewEditPlayController implements Initializable
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
         Parent root = loader.load();
         
-        primeStage.show();
+        primeStage.close();
     }
 
     @FXML
@@ -60,7 +60,7 @@ public class NewEditPlayController implements Initializable
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/NewEditPlay.fxml"));
         Parent root = loader.load();
         
-        primeStage.show();
+        primeStage.close();
         
         String inputTemp = String.valueOf(txtPlaylistName.getText());
         System.out.println(" " + inputTemp);

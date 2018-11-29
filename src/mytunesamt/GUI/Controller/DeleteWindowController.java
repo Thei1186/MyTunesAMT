@@ -35,6 +35,8 @@ public class DeleteWindowController implements Initializable
         Stage primeStage = (Stage)btnDeleteFinal.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
         Parent root = loader.load();
+        
+        primeStage.close();
     }  
     
     
