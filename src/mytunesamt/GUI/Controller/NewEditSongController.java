@@ -34,7 +34,7 @@ public class NewEditSongController implements Initializable
     @FXML
     private TextField txtTitle;
     @FXML
-    private TextField TxtArtist;
+    private TextField txtArtist;
     @FXML
     private TextField txtFile;
     @FXML
@@ -64,7 +64,7 @@ public class NewEditSongController implements Initializable
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
         Parent root = loader.load();
         
-        primeStage.show();
+        primeStage.close();
     }
 
     @FXML
@@ -74,7 +74,8 @@ public class NewEditSongController implements Initializable
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
         Parent root = loader.load();
       
-        primeStage.show();
+        primeStage.close();
+         
     }
 
     @FXML
