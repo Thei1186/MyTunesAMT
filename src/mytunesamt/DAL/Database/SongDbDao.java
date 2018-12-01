@@ -56,7 +56,7 @@ public class SongDbDao
     {
         try (Connection con = ds.getConnection())
         {
-            PreparedStatement pstmt = con.prepareStatement("UPDATE Songs SET Title = (?), Artist = (?), Location = (?) WHERE ID = (?)");
+            PreparedStatement pstmt = con.prepareStatement("UPDATE Songs SET Title = (?), Artist = (?), Location = (?) WHERE songID = (?)");
             pstmt.setString(1, song.getTitle());
             pstmt.setString(2, song.getArtist());
             pstmt.setString(3, song.getLocation());
@@ -71,15 +71,15 @@ public class SongDbDao
 
     public void deleteSong(Song song)
     {
-        int id = song.getId();
+        int songId = song.getId();
         try (Connection con = ds.getConnection())
         {
 
-            PreparedStatement pstmt = con.prepareStatement("DELETE FROM Songs WHERE ID=(?)");
-            pstmt.setInt(1, id);
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM Songs WHERE songID=(?)");
+            pstmt.setInt(1, songId);
             pstmt.execute();
             pstmt.close();
-            System.out.println(id + "has been deleted");
+            System.out.println(songId + "has been deleted");
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -99,36 +99,35 @@ public class SongDbDao
                 String title = rs.getString("Title");
                 String artist = rs.getString("Artist");
                 String location = rs.getString("Location");
-                int id = rs.getInt("ID");
+                int id = rs.getInt("id");
                 songList.add(new Song(title, artist, location, id));
             }
-        } catch (Exception e)
-        {
-            e.printStackTrace();
+
         }
         return songList;
     }
 
-    public Song getSong(int ID)
+    public Song getSong(int songId)
     {
         Song wantedSong = null;
         try (Connection con = ds.getConnection())
         {
-            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Songs WHERE ID = (?)");
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM SONGS WHERE songID = (?)");
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next())
             {
-                int id = rs.getInt("ID");
                 String title = rs.getString("Title");
+                String path = rs.getString("Filepath");
                 String artist = rs.getString("Artist");
-                String location = rs.getString("Location");
-
+                String genre = rs.getString("Genre");
+                String time = rs.getString("Time");
+                int id = rs.getInt("SongID");
+         
             }
 
         } catch (Exception e)
         {
-            e.printStackTrace();
         }
         return wantedSong;
     }
