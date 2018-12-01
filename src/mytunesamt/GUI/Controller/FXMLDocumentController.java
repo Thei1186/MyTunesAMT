@@ -22,7 +22,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import mytunesamt.AudioPlayer;
+import mytunesamt.GUI.Model.AudioPlayer;
 
 /**
  * FXML Controller class

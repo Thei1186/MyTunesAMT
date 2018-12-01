@@ -115,7 +115,8 @@ public class SongDbDao
         try (Connection con = ds.getConnection())
         {
             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Songs WHERE ID = (?)");
-
+            pstmt.setInt(1, ID);
+            
             ResultSet rs = pstmt.executeQuery();
             while (rs.next())
             {
@@ -123,7 +124,7 @@ public class SongDbDao
                 String title = rs.getString("Title");
                 String artist = rs.getString("Artist");
                 String location = rs.getString("Location");
-
+                wantedSong = new Song(title, artist, location, id);
             }
 
         } catch (Exception e)
