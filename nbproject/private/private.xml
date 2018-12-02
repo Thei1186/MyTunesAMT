@@ -5,10 +5,12 @@
         <group>
             <file>file:/D:/Github/MyTunesAMT/src/mytunesamt/GUI/Controller/NewEditSongController.java</file>
             <file>file:/D:/Github/MyTunesAMT/src/mytunesamt/DAL/Database/SongDbDao.java</file>
+            <file>file:/D:/Github/MyTunesAMT/src/mytunesamt/GUI/Model/AudioPlayer.java</file>
             <file>file:/D:/Github/MyTunesAMT/src/mytunesamt/GUI/Model/TunesModel.java</file>
             <file>file:/D:/Github/MyTunesAMT/src/mytunesamt/BE/Song.java</file>
             <file>file:/D:/Github/MyTunesAMT/src/mytunesamt/GUI/Controller/NewEditPlayController.java</file>
             <file>file:/D:/Github/MyTunesAMT/src/mytunesamt/BLL/TunesManager.java</file>
+            <file>file:/D:/Github/MyTunesAMT/src/mytunesamt/GUI/Controller/FXMLDocumentController.java</file>
         </group>
     </open-files>
 </project-private>

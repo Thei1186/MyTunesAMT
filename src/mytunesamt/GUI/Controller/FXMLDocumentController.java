@@ -8,7 +8,10 @@ package mytunesamt.GUI.Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +25,9 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import mytunesamt.BE.Song;
 import mytunesamt.GUI.Model.AudioPlayer;
+import mytunesamt.GUI.Model.TunesModel;
 
 /**
  * FXML Controller class
@@ -35,7 +40,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private Label label;
     @FXML
-    private ListView<?> listAllSongs;
+    private ListView<Song> listAllSongs;
     @FXML
     private ListView<?> listPlaylist;
     @FXML
@@ -71,13 +76,25 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private Slider slideVolume;
 
+    private TunesModel tModel;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        try {
+            tModel = new TunesModel();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            listAllSongs.setItems(tModel.getAllSongs());
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
