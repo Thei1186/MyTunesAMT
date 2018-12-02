@@ -8,6 +8,7 @@ package mytunesamt.GUI.Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,14 +23,22 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import mytunesamt.BE.Song;
+import mytunesamt.GUI.Model.TunesModel;
+import org.blinkenlights.jid3.ID3Exception;
+import org.blinkenlights.jid3.MP3File;
+import org.blinkenlights.jid3.ID3Tag;
+import org.blinkenlights.jid3.v1.ID3V1Tag;
+import org.blinkenlights.jid3.v1.ID3V1_0Tag;
+import org.blinkenlights.jid3.v1.ID3V1_1Tag;
+import org.blinkenlights.jid3.v2.ID3V2_3_0Tag;
 
 /**
  * FXML Controller class
  *
  * @author Asvør
  */
-public class NewEditSongController implements Initializable
-{
+public class NewEditSongController implements Initializable {
 
     @FXML
     private TextField txtTitle;
@@ -47,44 +56,78 @@ public class NewEditSongController implements Initializable
     private Button btnSaveSong;
     @FXML
     private AnchorPane rootPane2;
+    private final TunesModel tModel;
 
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
+    public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+
+    public NewEditSongController() throws IOException, SQLException {
+        tModel = new TunesModel();
+    }
 
     @FXML
-    private void cancelNewSong(ActionEvent event) throws IOException
-    {
-        Stage primeStage = (Stage)btnCancelNewSong.getScene().getWindow();
+    private void cancelNewSong(ActionEvent event) throws IOException {
+        Stage primeStage = (Stage) btnCancelNewSong.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
         Parent root = loader.load();
+
+        primeStage.close();
+    }
+
+    @FXML
+    private void saveSongClick(ActionEvent event) throws IOException, SQLException {
+        Stage primeStage = (Stage) btnSaveSong.getScene().getWindow();
+
+        String title = this.txtTitle.getText();
+        String artist = this.txtArtist.getText();
+        String location = this.txtFile.getText();
+
+        Song newSong = new Song(title, artist, location, 0);
+        tModel.createSong(newSong);
         
-        primeStage.close();
-    }
-
-    @FXML
-    private void saveSongClick(ActionEvent event) throws IOException
-    {
-        Stage primeStage = (Stage)btnSaveSong.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
         Parent root = loader.load();
-      
         primeStage.close();
-         
+
     }
 
     @FXML
-    private void chooseFile(ActionEvent event)
-    {
+    private void chooseFile(ActionEvent event) throws ID3Exception, IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Music File");
         Stage stage = (Stage) rootPane2.getScene().getWindow();
         File mediafile = fileChooser.showOpenDialog(stage);
+        String title = null;
+        String artist = null;
+        String location = null;
+
+        MP3File mp3 = new MP3File(mediafile);
+        try {
+            for (ID3Tag tag : mp3.getTags()) {
+                if (tag instanceof ID3V1_0Tag || tag instanceof ID3V1_1Tag) {
+                    ID3V1Tag id3Tag = (ID3V1Tag) tag;
+                    title = id3Tag.getTitle();
+                    artist = id3Tag.getArtist();
+                    location = mediafile.getPath();
+                } else if (tag instanceof ID3V2_3_0Tag) {
+                    ID3V2_3_0Tag id3Tag = (ID3V2_3_0Tag) tag;
+                    title = id3Tag.getTitle();
+                    artist = id3Tag.getArtist();
+                    location = mediafile.toURI().toString();
+
+                }
+            }
+        } catch (ID3Exception e) {
+            e.printStackTrace();
+        }
+        this.txtTitle.setText(title);
+        this.txtArtist.setText(artist);
+        this.txtFile.setText(location);
     }
-    
+
 }
