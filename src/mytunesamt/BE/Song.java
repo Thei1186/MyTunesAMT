@@ -11,6 +11,7 @@ package mytunesamt.BE;
  */
 public class Song
 {
+
     private String title;
     private String artist;
     private String category;
@@ -24,9 +25,7 @@ public class Song
         this.location = location;
         this.id = id;
     }
-    
-    
-    
+
     public String getTitle()
     {
         return title;
@@ -70,5 +69,11 @@ public class Song
     public int getId()
     {
         return id;
+    }
+
+    @Override
+    public String toString()
+    {
+        return " " + artist + ": " + title;
     }
 }

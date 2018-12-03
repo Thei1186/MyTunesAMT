@@ -38,7 +38,8 @@ import org.blinkenlights.jid3.v2.ID3V2_3_0Tag;
  *
  * @author Asvør
  */
-public class NewEditSongController implements Initializable {
+public class NewEditSongController implements Initializable
+{
 
     @FXML
     private TextField txtTitle;
@@ -62,16 +63,19 @@ public class NewEditSongController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
     }
 
-    public NewEditSongController() throws IOException, SQLException {
+    public NewEditSongController() throws IOException, SQLException
+    {
         tModel = new TunesModel();
     }
 
     @FXML
-    private void cancelNewSong(ActionEvent event) throws IOException {
+    private void cancelNewSong(ActionEvent event) throws IOException
+    {
         Stage primeStage = (Stage) btnCancelNewSong.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
         Parent root = loader.load();
@@ -80,7 +84,8 @@ public class NewEditSongController implements Initializable {
     }
 
     @FXML
-    private void saveSongClick(ActionEvent event) throws IOException, SQLException {
+    private void saveSongClick(ActionEvent event) throws IOException, SQLException
+    {
         Stage primeStage = (Stage) btnSaveSong.getScene().getWindow();
 
         String title = this.txtTitle.getText();
@@ -89,7 +94,7 @@ public class NewEditSongController implements Initializable {
 
         Song newSong = new Song(title, artist, location, 0);
         tModel.createSong(newSong);
-        
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
         Parent root = loader.load();
         primeStage.close();
@@ -97,7 +102,8 @@ public class NewEditSongController implements Initializable {
     }
 
     @FXML
-    private void chooseFile(ActionEvent event) throws ID3Exception, IOException {
+    private void chooseFile(ActionEvent event) throws ID3Exception, IOException
+    {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Music File");
         Stage stage = (Stage) rootPane2.getScene().getWindow();
@@ -107,27 +113,33 @@ public class NewEditSongController implements Initializable {
         String location = null;
 
         MP3File mp3 = new MP3File(mediafile);
-        try {
-            for (ID3Tag tag : mp3.getTags()) {
-                if (tag instanceof ID3V1_0Tag || tag instanceof ID3V1_1Tag) {
+        try
+        {
+            for (ID3Tag tag : mp3.getTags())
+            {
+                if (tag instanceof ID3V1_0Tag || tag instanceof ID3V1_1Tag)
+                {
                     ID3V1Tag id3Tag = (ID3V1Tag) tag;
                     title = id3Tag.getTitle();
                     artist = id3Tag.getArtist();
                     location = mediafile.getPath();
-                } else if (tag instanceof ID3V2_3_0Tag) {
+                } else if (tag instanceof ID3V2_3_0Tag)
+                {
                     ID3V2_3_0Tag id3Tag = (ID3V2_3_0Tag) tag;
                     title = id3Tag.getTitle();
                     artist = id3Tag.getArtist();
-                    location = mediafile.toURI().toString();
+                    location = mediafile.getPath();
 
                 }
             }
-        } catch (ID3Exception e) {
+            this.txtTitle.setText(title);
+            this.txtArtist.setText(artist);
+            this.txtFile.setText(location);
+        } catch (ID3Exception e)
+        {
             e.printStackTrace();
         }
-        this.txtTitle.setText(title);
-        this.txtArtist.setText(artist);
-        this.txtFile.setText(location);
+
     }
 
 }

@@ -27,7 +27,7 @@ public class SongDbDao
 
     public SongDbDao() throws IOException
     {
-        DbConnectionProvider ds = new DbConnectionProvider();
+        ds = new DbConnectionProvider();
 
     }
 
@@ -99,7 +99,7 @@ public class SongDbDao
                 String title = rs.getString("Title");
                 String artist = rs.getString("Artist");
                 String location = rs.getString("Location");
-                int id = rs.getInt("ID");
+                int id = rs.getInt("id");
                 songList.add(new Song(title, artist, location, id));
             }
         } catch (Exception e)
