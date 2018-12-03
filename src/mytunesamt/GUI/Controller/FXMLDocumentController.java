@@ -25,6 +25,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 import mytunesamt.BE.Song;
 import mytunesamt.GUI.Model.AudioPlayer;
 import mytunesamt.GUI.Model.TunesModel;
@@ -84,16 +85,7 @@ public class FXMLDocumentController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        try
-        {
-            tModel = new TunesModel();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         try
         {
             listAllSongs.setItems(tModel.getAllSongs());
@@ -101,23 +93,25 @@ public class FXMLDocumentController implements Initializable
         {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    
     }
+
+    public FXMLDocumentController() throws IOException, SQLException
+    {
+    tModel = new TunesModel();
+    }
+    
 
     @FXML
     private void deleteSong(ActionEvent event) throws IOException
     {
-        Stage primeStage = (Stage) btnDeleteSong.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/DeleteWindow.fxml"));
-        Parent root = loader.load();
 
-        //DeleteWindowController deleteWindowController = loader.getController();
-        Stage stageDelete = new Stage();
-        stageDelete.setScene(new Scene(root));
-
-        stageDelete.initModality(Modality.WINDOW_MODAL);
-        stageDelete.initOwner(primeStage);
-
-        stageDelete.show();
+        int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete this song?", "Delete", JOptionPane.YES_NO_OPTION);
+        if (p == 0)
+        {
+            tModel.deleteSong(listAllSongs.getSelectionModel().getSelectedItem());
+        }
+   
     }
 
     @FXML
