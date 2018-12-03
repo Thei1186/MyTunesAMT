@@ -36,7 +36,7 @@ public class SongDbDao
         String artist = song.getArtist();
         String title = song.getTitle();
         String location = song.getLocation();
-
+        
         try (Connection con = ds.getConnection())
         {
             String sql = "INSERT INTO Songs VALUES(?, ?, ?)";
@@ -44,7 +44,7 @@ public class SongDbDao
             pstmt.setString(1, title);
             pstmt.setString(2, artist);
             pstmt.setString(3, location);
-            System.out.println("Wohoo");
+           // pstmt.setInt(4, Statement.RETURN_GENERATED_KEYS);
             pstmt.execute();
         } catch (Exception e)
         {

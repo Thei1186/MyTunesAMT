@@ -93,7 +93,7 @@ public class NewEditSongController implements Initializable
         String location = this.txtFile.getText();
 
         Song newSong = new Song(title, artist, location, 0);
-        tModel.createSong(newSong);
+        tModel.addSong(newSong);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
         Parent root = loader.load();
@@ -123,7 +123,7 @@ public class NewEditSongController implements Initializable
                     title = id3Tag.getTitle();
                     artist = id3Tag.getArtist();
                     location = mediafile.getPath();
-                } else if (tag instanceof ID3V2_3_0Tag)
+                } else if (tag instanceof ID3V2_3_0Tag )
                 {
                     ID3V2_3_0Tag id3Tag = (ID3V2_3_0Tag) tag;
                     title = id3Tag.getTitle();

@@ -35,7 +35,7 @@ public class TunesModel
         return songList;
     }
 
-    public void createSong(Song song) throws SQLException
+    public void addSong(Song song) throws SQLException
     {
         logicLayer.addSong(song);
     }

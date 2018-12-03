@@ -18,6 +18,7 @@ public class AudioPlayer
 
     Media media;
     public MediaPlayer mediaPlayer;
+    int isPlaying = 0;
 
     public AudioPlayer(String name)
     {

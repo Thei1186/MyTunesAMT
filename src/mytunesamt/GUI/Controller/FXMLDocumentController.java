@@ -77,22 +77,28 @@ public class FXMLDocumentController implements Initializable
     private Slider slideVolume;
 
     private TunesModel tModel;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        try {
+        try
+        {
             tModel = new TunesModel();
-        } catch (IOException ex) {
+        } catch (IOException ex)
+        {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
+        try
+        {
             listAllSongs.setItems(tModel.getAllSongs());
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -129,15 +135,24 @@ public class FXMLDocumentController implements Initializable
         stageNewSong.show();
     }
 
-    
-
     @FXML
     private void playSong(ActionEvent event)
     {
-        File file = new File("Sange/AdventureTime Theme.mp3");
+        int isPlaying = 0;
+        File file = new File(listAllSongs.getSelectionModel().getSelectedItem().getLocation());
         AudioPlayer ap = new AudioPlayer(file.toURI().toString());
-        ap.mediaPlayer.play();
-
+        if (isPlaying == 0)
+        {
+            isPlaying++;
+            ap.mediaPlayer.play();
+        ap.mediaPlayer.getOnPlaying();
+        }
+        if (isPlaying == 1)
+        {
+            isPlaying--;
+            ap.mediaPlayer.play();
+            
+        }
     }
 
     @FXML
@@ -153,8 +168,7 @@ public class FXMLDocumentController implements Initializable
         stageNewSong.initModality(Modality.WINDOW_MODAL);
         stageNewSong.initOwner(secondStage);
         stageNewSong.show();
-        
-        
+
     }
 
     @FXML
@@ -175,7 +189,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void addToPlaylist(ActionEvent event) throws IOException
     {
-        
+
     }
 
     @FXML
@@ -196,8 +210,8 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void searchSongs(ActionEvent event)
     {
-         String inputTemp = String.valueOf(txtSearch.getText());
-         System.out.println(" " + inputTemp);
+        String inputTemp = String.valueOf(txtSearch.getText());
+        System.out.println(" " + inputTemp);
     }
 
 }
