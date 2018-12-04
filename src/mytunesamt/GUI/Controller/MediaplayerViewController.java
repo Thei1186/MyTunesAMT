@@ -35,8 +35,10 @@ import mytunesamt.GUI.Model.TunesModel;
  *
  * @author Asvør
  */
-public class FXMLDocumentController implements Initializable
+public class MediaplayerViewController implements Initializable
 {
+    
+    private File file;
 
     @FXML
     private Label label;
@@ -82,21 +84,35 @@ public class FXMLDocumentController implements Initializable
     /**
      * Initializes the controller class.
      */
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        
+
+        try
+        {
+            tModel = new TunesModel();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(MediaplayerViewController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(MediaplayerViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         try
         {
             listAllSongs.setItems(tModel.getAllSongs());
         } catch (SQLException ex)
         {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MediaplayerViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     
     }
 
-    public FXMLDocumentController() throws IOException, SQLException
+    public MediaplayerViewController() throws IOException, SQLException
     {
     tModel = new TunesModel();
     }
@@ -144,7 +160,7 @@ public class FXMLDocumentController implements Initializable
         if (isPlaying == 1)
         {
             isPlaying--;
-            ap.mediaPlayer.play();
+            ap.mediaPlayer.stop();
             
         }
     }
@@ -206,6 +222,14 @@ public class FXMLDocumentController implements Initializable
     {
         String inputTemp = String.valueOf(txtSearch.getText());
         System.out.println(" " + inputTemp);
+    }
+
+    @FXML
+    private void stopMusic(ActionEvent event)
+    {
+        AudioPlayer ap = new AudioPlayer(file.toURI().toString());
+        ap.mediaPlayer.play();
+ 
     }
 
 }
