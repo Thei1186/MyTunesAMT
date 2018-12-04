@@ -23,7 +23,7 @@ public class MyTunesAMT extends Application
     public void start(Stage stage) throws Exception
     {
      
-        Parent root = FXMLLoader.load(getClass().getResource("GUI/View/Document.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("GUI/View/MediaplayerView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Best MyTunes Ever - no bias");
