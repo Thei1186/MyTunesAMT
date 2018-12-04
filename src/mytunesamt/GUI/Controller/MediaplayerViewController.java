@@ -34,8 +34,10 @@ import mytunesamt.GUI.Model.TunesModel;
  *
  * @author Asvør
  */
-public class FXMLDocumentController implements Initializable
+public class MediaplayerViewController implements Initializable
 {
+    
+    private File file;
 
     @FXML
     private Label label;
@@ -81,6 +83,9 @@ public class FXMLDocumentController implements Initializable
     /**
      * Initializes the controller class.
      */
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -89,17 +94,17 @@ public class FXMLDocumentController implements Initializable
             tModel = new TunesModel();
         } catch (IOException ex)
         {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MediaplayerViewController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex)
         {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MediaplayerViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try
         {
             listAllSongs.setItems(tModel.getAllSongs());
         } catch (SQLException ex)
         {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MediaplayerViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -110,7 +115,6 @@ public class FXMLDocumentController implements Initializable
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/DeleteWindow.fxml"));
         Parent root = loader.load();
 
-        //DeleteWindowController deleteWindowController = loader.getController();
         Stage stageDelete = new Stage();
         stageDelete.setScene(new Scene(root));
 
@@ -150,7 +154,7 @@ public class FXMLDocumentController implements Initializable
         if (isPlaying == 1)
         {
             isPlaying--;
-            ap.mediaPlayer.play();
+            ap.mediaPlayer.stop();
             
         }
     }
@@ -212,6 +216,14 @@ public class FXMLDocumentController implements Initializable
     {
         String inputTemp = String.valueOf(txtSearch.getText());
         System.out.println(" " + inputTemp);
+    }
+
+    @FXML
+    private void stopMusic(ActionEvent event)
+    {
+        AudioPlayer ap = new AudioPlayer(file.toURI().toString());
+        ap.mediaPlayer.play();
+ 
     }
 
 }
