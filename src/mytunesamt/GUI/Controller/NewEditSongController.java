@@ -77,9 +77,6 @@ public class NewEditSongController implements Initializable
     private void cancelNewSong(ActionEvent event) throws IOException
     {
         Stage primeStage = (Stage) btnCancelNewSong.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Mediaplayer.fxml"));
-        Parent root = loader.load();
-
         primeStage.close();
     }
 
@@ -95,8 +92,6 @@ public class NewEditSongController implements Initializable
         Song newSong = new Song(title, artist, location, 0);
         tModel.addSong(newSong);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
-        Parent root = loader.load();
         primeStage.close();
 
     }
