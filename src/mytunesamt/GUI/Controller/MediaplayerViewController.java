@@ -37,8 +37,9 @@ import mytunesamt.GUI.Model.TunesModel;
  */
 public class MediaplayerViewController implements Initializable
 {
-    
+
     private File file;
+    private AudioPlayer ap = new AudioPlayer(file.toURI().toString());
 
     @FXML
     private Label label;
@@ -93,17 +94,6 @@ public class MediaplayerViewController implements Initializable
 
         try
         {
-            tModel = new TunesModel();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(MediaplayerViewController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(MediaplayerViewController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try
-        {
             listAllSongs.setItems(tModel.getAllSongs());
         } catch (SQLException ex)
         {
@@ -148,21 +138,8 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void playSong(ActionEvent event)
     {
-        int isPlaying = 0;
         File file = new File(listAllSongs.getSelectionModel().getSelectedItem().getLocation());
-        AudioPlayer ap = new AudioPlayer(file.toURI().toString());
-        if (isPlaying == 0)
-        {
-            isPlaying++;
-            ap.mediaPlayer.play();
-        ap.mediaPlayer.getOnPlaying();
-        }
-        if (isPlaying == 1)
-        {
-            isPlaying--;
-            ap.mediaPlayer.stop();
-            
-        }
+        ap.mediaPlayer.play();
     }
 
     @FXML
@@ -178,7 +155,8 @@ public class MediaplayerViewController implements Initializable
         stageNewSong.initModality(Modality.WINDOW_MODAL);
         stageNewSong.initOwner(secondStage);
         stageNewSong.show();
-
+        
+        
     }
 
     @FXML
