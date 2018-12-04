@@ -3,15 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/DAL/Database/PlaylistDbDao.java</file>
-            <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/GUI/View/MediaplayerView.fxml</file>
-            <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/BLL/MTLogicFacade.java</file>
-            <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/GUI/Controller/NewEditSongController.java</file>
-            <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/DAL/Database/SongDbDao.java</file>
-            <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/BE/Playlist.java</file>
-            <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/BLL/TunesManager.java</file>
-            <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/GUI/Controller/MediaplayerViewController.java</file>
-            <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/BE/Song.java</file>
+            <file>file:/D:/Github/MyTunesAMT/src/mytunesamt/GUI/Controller/NewEditSongController.java</file>
+            <file>file:/D:/Github/MyTunesAMT/src/mytunesamt/DAL/Database/SongDbDao.java</file>
+            <file>file:/D:/Github/MyTunesAMT/src/mytunesamt/GUI/Model/AudioPlayer.java</file>
+            <file>file:/D:/Github/MyTunesAMT/src/mytunesamt/GUI/Model/TunesModel.java</file>
+            <file>file:/D:/Github/MyTunesAMT/src/mytunesamt/BE/Song.java</file>
+            <file>file:/D:/Github/MyTunesAMT/src/mytunesamt/GUI/Controller/NewEditPlayController.java</file>
+            <file>file:/D:/Github/MyTunesAMT/src/mytunesamt/BLL/TunesManager.java</file>
+            <file>file:/D:/Github/MyTunesAMT/src/mytunesamt/GUI/Controller/FXMLDocumentController.java</file>
         </group>
     </open-files>
 </project-private>

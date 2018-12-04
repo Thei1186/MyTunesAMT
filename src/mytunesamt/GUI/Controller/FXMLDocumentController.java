@@ -34,10 +34,8 @@ import mytunesamt.GUI.Model.TunesModel;
  *
  * @author Asvør
  */
-public class MediaplayerViewController implements Initializable
+public class FXMLDocumentController implements Initializable
 {
-    
-    private File file;
 
     @FXML
     private Label label;
@@ -83,9 +81,6 @@ public class MediaplayerViewController implements Initializable
     /**
      * Initializes the controller class.
      */
-    
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -94,17 +89,17 @@ public class MediaplayerViewController implements Initializable
             tModel = new TunesModel();
         } catch (IOException ex)
         {
-            Logger.getLogger(MediaplayerViewController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex)
         {
-            Logger.getLogger(MediaplayerViewController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try
         {
             listAllSongs.setItems(tModel.getAllSongs());
         } catch (SQLException ex)
         {
-            Logger.getLogger(MediaplayerViewController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -115,6 +110,7 @@ public class MediaplayerViewController implements Initializable
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/DeleteWindow.fxml"));
         Parent root = loader.load();
 
+        //DeleteWindowController deleteWindowController = loader.getController();
         Stage stageDelete = new Stage();
         stageDelete.setScene(new Scene(root));
 
@@ -154,7 +150,7 @@ public class MediaplayerViewController implements Initializable
         if (isPlaying == 1)
         {
             isPlaying--;
-            ap.mediaPlayer.stop();
+            ap.mediaPlayer.play();
             
         }
     }
@@ -216,14 +212,6 @@ public class MediaplayerViewController implements Initializable
     {
         String inputTemp = String.valueOf(txtSearch.getText());
         System.out.println(" " + inputTemp);
-    }
-
-    @FXML
-    private void stopMusic(ActionEvent event)
-    {
-        AudioPlayer ap = new AudioPlayer(file.toURI().toString());
-        ap.mediaPlayer.play();
- 
     }
 
 }
