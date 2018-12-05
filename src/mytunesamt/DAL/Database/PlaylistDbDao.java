@@ -49,7 +49,7 @@ public class PlaylistDbDao
         return newPlaylist;
     }
     
-     public List<Playlist> getAllPlaylists() throws SQLException
+    public List<Playlist> getAllPlaylists() throws SQLException
     {
         List<Playlist> playlistList = new ArrayList<>();
         try (Connection con = ds.getConnection())
@@ -70,5 +70,36 @@ public class PlaylistDbDao
         return playlistList;
     }
      
-     
+    public void deletePlaylist(Playlist playlist)
+    {
+        int id = playlist.getId();
+        try (Connection con = ds.getConnection())
+        {
+
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM Playlist WHERE ID=(?)");
+            pstmt.setInt(1, id);
+            pstmt.execute();
+            pstmt.close();
+            System.out.println(id + "has been deleted");
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    public void editPlaylist(Playlist playlist)
+    {
+        try (Connection con = ds.getConnection())
+        {
+            PreparedStatement pstmt = con.prepareStatement("UPDATE Playlist SET Name = (?) WHERE ID = (?)");
+            pstmt.setString(1, playlist.getName());
+            pstmt.setInt(2, playlist.getId());
+            pstmt.execute();
+            pstmt.close();
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        } 
+    }
 }
