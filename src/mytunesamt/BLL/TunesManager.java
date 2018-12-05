@@ -67,7 +67,7 @@ public class TunesManager implements MTLogicFacade
     }
 
     @Override
-    public List<Playlist> getAllPlaylists() throws SQLException
+    public List<Playlist> getAllPlaylists() throws SQLException 
     {
         return pLDbDao.getAllPlaylists();
     }
