@@ -14,13 +14,11 @@ import java.util.List;
 public class Playlist
 {
   private List<Song> songList;   
-  private int numberOfSongs;
   private final int id;
   private String name;
 
-    public Playlist(List<Song> songList, int numberOfSongs, int id, String name)
+    public Playlist(int id, String name)
     {
-        this.numberOfSongs = numberOfSongs;
         this.id = id;
         this.name = name;
     }
@@ -33,16 +31,6 @@ public class Playlist
     public void setSongList(List<Song> songList)
     {
         this.songList = songList;
-    }
-
-    public int getNumberOfSongs()
-    {
-        return numberOfSongs;
-    }
-
-    public void setNumberOfSongs(int numberOfSongs)
-    {
-        this.numberOfSongs = numberOfSongs;
     }
 
     public String getName()

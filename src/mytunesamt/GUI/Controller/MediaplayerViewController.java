@@ -29,6 +29,7 @@ import javafx.scene.media.MediaPlayer.Status;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import mytunesamt.BE.Playlist;
 import mytunesamt.BE.Song;
 import mytunesamt.GUI.Model.AudioPlayer;
 import mytunesamt.GUI.Model.TunesModel;
@@ -46,9 +47,9 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private ListView<Song> listAllSongs;
     @FXML
-    private ListView<?> listPlaylist;
+    private ListView<Playlist> listPlaylist;
     @FXML
-    private ListView<?> listOnPlaylist;
+    private ListView<?> songsOnPlaylist;
     @FXML
     private Button btnNewSong;
     @FXML
@@ -84,6 +85,7 @@ public class MediaplayerViewController implements Initializable
     private MediaPlayer mediaPlayer;
 
     private String filePath;
+    
 
     /**
      * Initializes the controller class.
