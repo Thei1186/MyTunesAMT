@@ -72,7 +72,7 @@ public class TunesModel
         return playlist;
     }
     
-    public void newPlaylist (Playlist playlist) throws IOException, SQLServerException, SQLException
+    public void newPlaylist (Playlist playlist) throws SQLException
     {
         logicLayer.newPlaylist(playlist);
     }

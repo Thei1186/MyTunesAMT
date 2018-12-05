@@ -47,6 +47,13 @@ public class NewEditPlayController implements Initializable
         // TODO
     }    
 
+    public NewEditPlayController() throws IOException, SQLException
+    {
+        tModel = new TunesModel();
+    }
+    
+    
+
     @FXML
     private void cancelPlaylistClick(ActionEvent event) throws IOException, SQLException
     {
@@ -61,10 +68,8 @@ public class NewEditPlayController implements Initializable
         
         
         String name = this.txtPlaylistName.getText();
-        
-//        Playlist newPlaylist = new Playlist (0, name);
-//        tModel.newPlaylist(newPlaylist);
-        
+        Playlist newPlayList = new Playlist(0, name);
+        tModel.newPlaylist(newPlayList);
         primeStage.close();
         
         String inputTemp = String.valueOf(txtPlaylistName.getText());
