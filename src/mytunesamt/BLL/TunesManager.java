@@ -5,9 +5,11 @@
  */
 package mytunesamt.BLL;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import mytunesamt.BE.Playlist;
 import mytunesamt.BE.Song;
 import mytunesamt.DAL.Database.PlaylistDbDao;
 import mytunesamt.DAL.Database.SongDbDao;
@@ -56,5 +58,29 @@ public class TunesManager implements MTLogicFacade
     public void deleteSong(Song song)
     {
         sDbDao.deleteSong(song);
+    }
+
+    @Override
+    public void newPlaylist(String name, int id) throws IOException, SQLException
+    {
+        pLDbDao.newPlaylist(name, id); 
+    }
+
+    @Override
+    public List<Playlist> getAllPlaylists() throws SQLException
+    {
+        return pLDbDao.getAllPlaylists();
+    }
+
+    @Override
+    public void deletePlaylist(Playlist playlist)
+    {
+        pLDbDao.deletePlaylist(playlist);
+    }
+
+    @Override
+    public void editPlaylist(Playlist playlist)
+    {
+        pLDbDao.editPlaylist(playlist);
     }
 }

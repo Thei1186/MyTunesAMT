@@ -14,7 +14,7 @@ import java.util.List;
 public class Playlist
 {
   private List<Song> songList;   
-  private final int id;
+  private int id;
   private String name;
 
     public Playlist(int id, String name)
@@ -42,5 +42,12 @@ public class Playlist
     {
         this.name = name;
     }
+
+    public int getId()
+    {
+        return id;
+    }
+    
+    
   
 }
