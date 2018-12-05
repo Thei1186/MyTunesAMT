@@ -22,10 +22,16 @@ public class PlaylistDbDao
 {
     
     DbConnectionProvider ds;
-    
-    public Playlist newPlaylist (String name, int id) throws IOException, SQLServerException, SQLException
+
+    public PlaylistDbDao() throws IOException
     {
-         ds = new DbConnectionProvider();
+    ds = new DbConnectionProvider();
+    }
+    
+    
+    public void newPlaylist (int id, String name) throws IOException, SQLServerException, SQLException
+    {
+        
          Connection con = ds.getConnection();
          
          Playlist newPlaylist = null;
@@ -45,8 +51,6 @@ public class PlaylistDbDao
                  
              }
          }
-         
-        return newPlaylist;
     }
     
     public List<Playlist> getAllPlaylists() throws SQLException

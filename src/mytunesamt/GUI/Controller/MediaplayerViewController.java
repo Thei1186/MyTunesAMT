@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -97,6 +98,7 @@ public class MediaplayerViewController implements Initializable
         try
         {
             listAllSongs.setItems(tModel.getAllSongs());
+            listPlaylist.setItems(tModel.getAllPlaylists());
         } catch (SQLException ex)
         {
             Logger.getLogger(MediaplayerViewController.class.getName()).log(Level.SEVERE, null, ex);
@@ -184,7 +186,7 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void addToPlaylist(ActionEvent event) throws IOException
     {
-
+        
     }
 
     @FXML
@@ -218,6 +220,11 @@ public class MediaplayerViewController implements Initializable
             this.filePath = null;
         }
 
+    }
+
+    @FXML
+    private void pauseSong(ActionEvent event)
+    {
     }
 
 }

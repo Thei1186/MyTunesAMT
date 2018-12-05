@@ -7,6 +7,7 @@ package mytunesamt.GUI.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +19,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import mytunesamt.BE.Playlist;
+import mytunesamt.GUI.Model.TunesModel;
 
 /**
  * FXML Controller class
@@ -26,7 +29,8 @@ import javafx.stage.Stage;
  */
 public class NewEditPlayController implements Initializable
 {
-
+    private TunesModel tModel;
+    
     @FXML
     private TextField txtPlaylistName;
     @FXML
@@ -44,11 +48,13 @@ public class NewEditPlayController implements Initializable
     }    
 
     @FXML
-    private void cancelPlaylistClick(ActionEvent event) throws IOException
+    private void cancelPlaylistClick(ActionEvent event) throws IOException, SQLException
     {
         Stage primeStage = (Stage)btnCancelPlaylist.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/Document.fxml"));
-        Parent root = loader.load();
+        
+        String name = this.txtPlaylistName.getText();
+        Playlist newPlaylist = new Playlist (0, name);
+        tModel.newPlaylist(0, name);
         
         primeStage.close();
     }

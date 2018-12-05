@@ -5,6 +5,8 @@
  */
 package mytunesamt.BLL;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import mytunesamt.BE.Playlist;
@@ -27,9 +29,9 @@ public interface MTLogicFacade
 
     Song getSong(Song song);
     
-    Playlist newPlaylist (String name, int id);
+    void newPlaylist (int id, String name) throws IOException, SQLServerException, SQLException;
     
-    List<Playlist> getAllPlaylists();
+    List<Playlist> getAllPlaylists() throws SQLException;
     
     void deletePlaylist(Playlist playlist);
     

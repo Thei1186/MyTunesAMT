@@ -5,10 +5,13 @@
  */
 package mytunesamt.GUI.Model;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import mytunesamt.BE.Playlist;
 import mytunesamt.BE.Song;
 import mytunesamt.BLL.MTLogicFacade;
 import mytunesamt.BLL.TunesManager;
@@ -20,14 +23,17 @@ import mytunesamt.BLL.TunesManager;
 public class TunesModel
 {
 
+    private ObservableList<Playlist> playlist;
     private ObservableList<Song> songList;
     private final MTLogicFacade logicLayer;
 
     public TunesModel() throws IOException, SQLException
     {
         songList = FXCollections.observableArrayList();
+        playlist = FXCollections.observableArrayList();
         logicLayer = new TunesManager();
         songList.addAll(logicLayer.getAllSongs());
+        playlist.addAll(logicLayer.getAllPlaylists());
     }
 
     public ObservableList<Song> getSongs()
@@ -61,4 +67,29 @@ public class TunesModel
         return logicLayer.getSong(song);
     }
     
+    public ObservableList<Playlist> getPlaylists()
+    {
+        return playlist;
+    }
+    
+    public void newPlaylist (int id, String name) throws IOException, SQLServerException, SQLException
+    {
+        logicLayer.newPlaylist(id, name);
+    }
+    
+    public ObservableList<Playlist> getAllPlaylists() throws SQLException
+    {
+        playlist = FXCollections.observableArrayList(logicLayer.getAllPlaylists());
+        return playlist;
+    }
+    
+    public void deletePlaylist(Playlist playlist)
+    {
+        logicLayer.deletePlaylist(playlist);
+    }
+    
+    public void editPlaylist(Playlist playlist)
+    {
+        logicLayer.editPlaylist(playlist);
+    }
 }
