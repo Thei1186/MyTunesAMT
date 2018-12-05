@@ -51,9 +51,6 @@ public class NewEditPlayController implements Initializable
     private void cancelPlaylistClick(ActionEvent event) throws IOException, SQLException
     {
         Stage primeStage = (Stage)btnCancelPlaylist.getScene().getWindow();
-        
-        
-        
         primeStage.close();
     }
 

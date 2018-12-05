@@ -50,35 +50,19 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private ListView<Playlist> listPlaylist;
     @FXML
-    private ListView<?> songsOnPlaylist;
+    private ListView<Song> songsOnPlaylist;
     @FXML
     private Button btnNewSong;
-    @FXML
-    private Button btnDeleteSong;
     @FXML
     private Button btnNewPlay;
     @FXML
     private Button btnDeleteFromPlay;
-    @FXML
-    private Button btnDeletePlay;
-    @FXML
-    private Button btnAddToPlay;
     @FXML
     private Button btnSearch;
     @FXML
     private TextField txtSearch;
     @FXML
     private Label lblsong;
-    @FXML
-    private Button btnPlaySong;
-    @FXML
-    private Button btnPrevious;
-    @FXML
-    private Button btnPause;
-    @FXML
-    private Button btnStop;
-    @FXML
-    private Button btnNext;
     @FXML
     private Slider slideVolume;
 
@@ -171,37 +155,22 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void deletePlaylist(ActionEvent event) throws IOException
     {
-        Stage primeStage = (Stage) btnDeletePlay.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/DeleteWindow.fxml"));
-        Parent root = loader.load();
-
-        Stage stageNewSong = new Stage();
-        stageNewSong.setScene(new Scene(root));
-
-        stageNewSong.initModality(Modality.WINDOW_MODAL);
-        stageNewSong.initOwner(primeStage);
-        stageNewSong.show();
+        int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete this playlist?", "Delete", JOptionPane.YES_NO_OPTION);
+        if (p == 0)
+        {
+            tModel.deletePlaylist(listPlaylist.getSelectionModel().getSelectedItem());
+        }
     }
 
-    @FXML
-    private void addToPlaylist(ActionEvent event) throws IOException
-    {
-        
-    }
 
     @FXML
     private void deleteFromPlaylist(ActionEvent event) throws IOException
     {
-        Stage primeStage = (Stage) btnDeleteFromPlay.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/DeleteWindow.fxml"));
-        Parent root = loader.load();
-
-        Stage stageNewSong = new Stage();
-        stageNewSong.setScene(new Scene(root));
-
-        stageNewSong.initModality(Modality.WINDOW_MODAL);
-        stageNewSong.initOwner(primeStage);
-        stageNewSong.show();
+        int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete this song?", "Delete", JOptionPane.YES_NO_OPTION);
+        if (p == 0)
+        {
+           // tModel.deletePlaylist(songsOnPlaylist.getSelectionModel().getSelectedItem());
+        }
     }
 
     @FXML
@@ -223,8 +192,14 @@ public class MediaplayerViewController implements Initializable
     }
 
     @FXML
+    private void addToPlaylist(ActionEvent event)
+    {
+    }
+
+    @FXML
     private void pauseSong(ActionEvent event)
     {
     }
+
 
 }
