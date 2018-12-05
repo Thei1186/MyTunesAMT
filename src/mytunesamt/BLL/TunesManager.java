@@ -61,7 +61,7 @@ public class TunesManager implements MTLogicFacade
     }
 
     @Override
-    public void newPlaylist(Playlist playlist) throws IOException, SQLException
+    public void newPlaylist(Playlist playlist) throws SQLException
     {
         pLDbDao.newPlaylist(playlist); 
     }

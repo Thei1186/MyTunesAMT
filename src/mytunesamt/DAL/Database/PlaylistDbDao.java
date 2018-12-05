@@ -29,16 +29,17 @@ public class PlaylistDbDao
     }
     
     
-    public void newPlaylist (Playlist playlist) throws IOException, SQLServerException, SQLException
+    public void newPlaylist (Playlist playlistName)
     {       
-         
-         String name = playlist.getName();
+         String name = playlistName.getName();
+            
          
          try (Connection con = ds.getConnection())
          {
              String sql = "INSERT INTO Playlist VALUES (?)";
              PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
              pstmt.setString(1, name);
+             
              pstmt.execute();
              
              
