@@ -27,6 +27,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
+import static javafx.scene.media.MediaPlayer.Status.PAUSED;
+import static javafx.scene.media.MediaPlayer.Status.PLAYING;
+import static javafx.scene.media.MediaPlayer.Status.STOPPED;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -56,8 +59,6 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private Button btnNewPlay;
     @FXML
-    private Button btnDeleteFromPlay;
-    @FXML
     private Button btnSearch;
     @FXML
     private TextField txtSearch;
@@ -65,12 +66,13 @@ public class MediaplayerViewController implements Initializable
     private Label lblsong;
     @FXML
     private Slider slideVolume;
+    @FXML
+    private Button btnPause;
 
     private TunesModel tModel;
     private MediaPlayer mediaPlayer;
 
     private String filePath;
-    
 
     /**
      * Initializes the controller class.
@@ -93,6 +95,7 @@ public class MediaplayerViewController implements Initializable
     public MediaplayerViewController() throws IOException, SQLException
     {
         tModel = new TunesModel();
+
     }
 
     @FXML
@@ -127,8 +130,8 @@ public class MediaplayerViewController implements Initializable
     {
         File file = new File(listAllSongs.getSelectionModel().getSelectedItem().getLocation());
         filePath = file.toURI().toString();
-  
-        if (filePath != null)
+
+        if (mediaPlayer == null)
         {
             Media media = new Media(filePath);
             mediaPlayer = new MediaPlayer(media);
@@ -162,14 +165,13 @@ public class MediaplayerViewController implements Initializable
         }
     }
 
-
     @FXML
     private void deleteFromPlaylist(ActionEvent event) throws IOException
     {
         int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete this song?", "Delete", JOptionPane.YES_NO_OPTION);
         if (p == 0)
         {
-           // tModel.deletePlaylist(songsOnPlaylist.getSelectionModel().getSelectedItem());
+            // tModel.deletePlaylist(songsOnPlaylist.getSelectionModel().getSelectedItem());
         }
     }
 
@@ -183,10 +185,9 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void stopMusic(ActionEvent event)
     {
-        if (filePath != null)
+        if (mediaPlayer.getStatus() == PLAYING || mediaPlayer.getStatus() == PAUSED)
         {
             mediaPlayer.stop();
-            this.filePath = null;
         }
 
     }
@@ -199,7 +200,18 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void pauseSong(ActionEvent event)
     {
-    }
 
+        if (mediaPlayer.getStatus() == PLAYING)
+        {
+            btnPause.setText("Resume");
+            mediaPlayer.pause();
+
+        }
+        if (mediaPlayer.getStatus() == PAUSED)
+        {
+            btnPause.setText("Pause");
+            mediaPlayer.play();
+        }
+    }
 
 }
