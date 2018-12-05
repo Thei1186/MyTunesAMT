@@ -29,7 +29,7 @@ public interface MTLogicFacade
 
     Song getSong(Song song);
     
-    void newPlaylist (int id, String name) throws IOException, SQLServerException, SQLException;
+    void newPlaylist (Playlist playlist) throws IOException, SQLServerException, SQLException;
     
     List<Playlist> getAllPlaylists() throws SQLException;
     

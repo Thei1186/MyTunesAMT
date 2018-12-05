@@ -29,27 +29,23 @@ public class PlaylistDbDao
     }
     
     
-    public void newPlaylist (int id, String name) throws IOException, SQLServerException, SQLException
-    {
-        
-         Connection con = ds.getConnection();
+    public void newPlaylist (Playlist playlist) throws IOException, SQLServerException, SQLException
+    {       
          
-         Playlist newPlaylist = null;
+         String name = playlist.getName();
          
-         String SQL = "INSERT iNTO Playlist VALUES (?)";
-         PreparedStatement pstmt = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-         pstmt.setInt(1, id);
-         pstmt.setString(2, name);
-         pstmt.execute();
-         
-         try (ResultSet generatedKeys = pstmt.getGeneratedKeys())
+         try (Connection con = ds.getConnection())
          {
-             if (generatedKeys.next())
-             {
-                 newPlaylist = new Playlist (generatedKeys.getInt(1), name);
-
-                 
-             }
+             String sql = "INSERT INTO Playlist VALUES (?)";
+             PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+             pstmt.setString(1, name);
+             pstmt.execute();
+             
+             
+         }
+         catch (Exception e)
+         {
+             e.printStackTrace();
          }
     }
     

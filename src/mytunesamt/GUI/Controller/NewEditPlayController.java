@@ -52,19 +52,21 @@ public class NewEditPlayController implements Initializable
     {
         Stage primeStage = (Stage)btnCancelPlaylist.getScene().getWindow();
         
-        String name = this.txtPlaylistName.getText();
-        Playlist newPlaylist = new Playlist (0, name);
-        tModel.newPlaylist(0, name);
+        
         
         primeStage.close();
     }
 
     @FXML
-    private void savePlaylistClick(ActionEvent event) throws IOException
+    private void savePlaylistClick(ActionEvent event) throws IOException, SQLException
     {
         Stage primeStage = (Stage)btnSavePlaylist.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/NewEditPlay.fxml"));
-        Parent root = loader.load();
+        
+        
+        String name = this.txtPlaylistName.getText();
+        
+//        Playlist newPlaylist = new Playlist (0, name);
+//        tModel.newPlaylist(newPlaylist);
         
         primeStage.close();
         
