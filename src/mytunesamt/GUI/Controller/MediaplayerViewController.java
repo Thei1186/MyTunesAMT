@@ -5,11 +5,17 @@
  */
 package mytunesamt.GUI.Controller;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
@@ -32,6 +38,7 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import mytunesamt.BE.Playlist;
 import mytunesamt.BE.Song;
+import mytunesamt.DAL.Database.DbConnectionProvider;
 import mytunesamt.GUI.Model.AudioPlayer;
 import mytunesamt.GUI.Model.TunesModel;
 
@@ -72,6 +79,7 @@ public class MediaplayerViewController implements Initializable
     private String filePath;
     
 
+    
     /**
      * Initializes the controller class.
      */
@@ -174,10 +182,31 @@ public class MediaplayerViewController implements Initializable
     }
 
     @FXML
-    private void searchSongs(ActionEvent event)
+    private void searchSongs(ActionEvent event) throws IOException, SQLServerException, SQLException
     {
+        DbConnectionProvider ds = new DbConnectionProvider();
         String inputTemp = String.valueOf(txtSearch.getText());
         System.out.println(" " + inputTemp);
+        
+        Scanner sc = new Scanner (System.in);
+        
+        try (Connection con = ds.getConnection())
+        {
+            String name = sc.next();
+            String sql = "SELECT * FROM Songs WHERE name = '" + name + "'";
+            PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            
+            ResultSet rs = pstmt.executeQuery(sql);
+            
+            while (rs.next())
+            {
+                System.out.println("" + name);
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @FXML
