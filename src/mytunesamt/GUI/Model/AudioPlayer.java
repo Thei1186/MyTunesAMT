@@ -1,8 +1,9 @@
 package mytunesamt.GUI.Model;
 
+import javafx.collections.ObservableList;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
+import mytunesamt.BE.Song;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,21 +16,18 @@ import javafx.scene.media.MediaView;
  */
 public class AudioPlayer
 {
+// This class is currently unused
+    
+//    Media media;
+//    public MediaPlayer mediaPlayer;
+//    
+//    
+//    public AudioPlayer(String name)
+//    {
+//        media = new Media(name);
+//        mediaPlayer = new MediaPlayer(media);
+//
+//    }
 
-    Media media;
-    public MediaPlayer mediaPlayer;
-    int isPlaying = 0;
-
-    public AudioPlayer(String name)
-    {
-        media = new Media(name);
-        mediaPlayer = new MediaPlayer(media);
-
-    }
-
-    public AudioPlayer()
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
 }

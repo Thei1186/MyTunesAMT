@@ -23,6 +23,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaPlayer.Status;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -37,9 +40,6 @@ import mytunesamt.GUI.Model.TunesModel;
  */
 public class MediaplayerViewController implements Initializable
 {
-
-    private File file;
-    private AudioPlayer ap = new AudioPlayer(file.toURI().toString());
 
     @FXML
     private Label label;
@@ -81,13 +81,13 @@ public class MediaplayerViewController implements Initializable
     private Slider slideVolume;
 
     private TunesModel tModel;
+    private MediaPlayer mediaPlayer;
+
+    private String filePath;
 
     /**
      * Initializes the controller class.
      */
-    
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -99,14 +99,13 @@ public class MediaplayerViewController implements Initializable
         {
             Logger.getLogger(MediaplayerViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
     }
 
     public MediaplayerViewController() throws IOException, SQLException
     {
-    tModel = new TunesModel();
+        tModel = new TunesModel();
     }
-    
 
     @FXML
     private void deleteSong(ActionEvent event) throws IOException
@@ -117,7 +116,7 @@ public class MediaplayerViewController implements Initializable
         {
             tModel.deleteSong(listAllSongs.getSelectionModel().getSelectedItem());
         }
-   
+
     }
 
     @FXML
@@ -139,7 +138,14 @@ public class MediaplayerViewController implements Initializable
     private void playSong(ActionEvent event)
     {
         File file = new File(listAllSongs.getSelectionModel().getSelectedItem().getLocation());
-        ap.mediaPlayer.play();
+        filePath = file.toURI().toString();
+  
+        if (filePath != null)
+        {
+            Media media = new Media(filePath);
+            mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.play();
+        }
     }
 
     @FXML
@@ -155,8 +161,7 @@ public class MediaplayerViewController implements Initializable
         stageNewSong.initModality(Modality.WINDOW_MODAL);
         stageNewSong.initOwner(secondStage);
         stageNewSong.show();
-        
-        
+
     }
 
     @FXML
@@ -205,9 +210,12 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void stopMusic(ActionEvent event)
     {
-        AudioPlayer ap = new AudioPlayer(file.toURI().toString());
-        ap.mediaPlayer.play();
- 
+        if (filePath != null)
+        {
+            mediaPlayer.stop();
+            this.filePath = null;
+        }
+
     }
 
 }
