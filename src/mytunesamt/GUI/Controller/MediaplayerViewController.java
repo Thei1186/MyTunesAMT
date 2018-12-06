@@ -120,21 +120,6 @@ public class MediaplayerViewController implements Initializable
     }
 
     @FXML
-    private void clickNewEdit(ActionEvent event) throws IOException
-    {
-        Stage secondStage = (Stage) btnNewSong.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/NewEditSong.fxml"));
-        Parent root = loader.load();
-
-        Stage stageNewSong = new Stage();
-        stageNewSong.setScene(new Scene(root));
-
-        stageNewSong.initModality(Modality.WINDOW_MODAL);
-        stageNewSong.initOwner(secondStage);
-        stageNewSong.show();
-    }
-
-    @FXML
     private void playSong(ActionEvent event)
     {
         File file = new File(listAllSongs.getSelectionModel().getSelectedItem().getLocation());
@@ -146,22 +131,6 @@ public class MediaplayerViewController implements Initializable
             mediaPlayer = new MediaPlayer(media);
             mediaPlayer.play();
         }
-    }
-
-    @FXML
-    private void newEditPlaylist(ActionEvent event) throws IOException
-    {
-        Stage secondStage = (Stage) btnNewPlay.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/NewEditPlay.fxml"));
-        Parent root = loader.load();
-
-        Stage stageNewSong = new Stage();
-        stageNewSong.setScene(new Scene(root));
-
-        stageNewSong.initModality(Modality.WINDOW_MODAL);
-        stageNewSong.initOwner(secondStage);
-        stageNewSong.show();
-
     }
 
     @FXML
@@ -189,6 +158,8 @@ public class MediaplayerViewController implements Initializable
     {
         String input = txtSearch.getText();
         listAllSongs.setItems(tModel.searchSongs(input));
+        
+        
     }
 
     @FXML
@@ -221,6 +192,46 @@ public class MediaplayerViewController implements Initializable
             btnPause.setText("Pause");
             mediaPlayer.play();
         }
+    }
+
+    @FXML
+    private void clickNewSong(ActionEvent event) throws IOException
+    {
+        Stage secondStage = (Stage) btnNewSong.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/NewEditSong.fxml"));
+        Parent root = loader.load();
+
+        Stage stageNewSong = new Stage();
+        stageNewSong.setScene(new Scene(root));
+
+        stageNewSong.initModality(Modality.WINDOW_MODAL);
+        stageNewSong.initOwner(secondStage);
+        stageNewSong.show();
+    }
+
+    @FXML
+    private void newPlaylist(ActionEvent event) throws IOException
+    {
+        Stage secondStage = (Stage) btnNewPlay.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/NewEditPlay.fxml"));
+        Parent root = loader.load();
+
+        Stage stageNewSong = new Stage();
+        stageNewSong.setScene(new Scene(root));
+
+        stageNewSong.initModality(Modality.WINDOW_MODAL);
+        stageNewSong.initOwner(secondStage);
+        stageNewSong.show();
+    }
+
+    @FXML
+    private void editSong(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void editPlaylist(ActionEvent event)
+    {
     }
 
 }
