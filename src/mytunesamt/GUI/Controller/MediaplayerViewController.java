@@ -9,17 +9,10 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,17 +26,13 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaPlayer.Status;
 import static javafx.scene.media.MediaPlayer.Status.PAUSED;
 import static javafx.scene.media.MediaPlayer.Status.PLAYING;
-import static javafx.scene.media.MediaPlayer.Status.STOPPED;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import mytunesamt.BE.Playlist;
 import mytunesamt.BE.Song;
-import mytunesamt.DAL.Database.DbConnectionProvider;
-import mytunesamt.GUI.Model.AudioPlayer;
 import mytunesamt.GUI.Model.TunesModel;
 
 /**
@@ -175,6 +164,7 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void addToPlaylist(ActionEvent event)
     {
+//       songsOnPlaylist.setItems();
     }
 
     @FXML

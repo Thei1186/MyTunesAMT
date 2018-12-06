@@ -39,9 +39,31 @@ public class PlaylistDbDao
             
         } catch (Exception e)
         {
+            e.printStackTrace();
         }
     }
+public List<Song> getAllSongsOnPlaylist()
+{
+       List<Song> songList = new ArrayList<>();
+        try (Connection con = ds.getConnection())
+        {
 
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM PlaylistSongs");
+            while (rs.next())
+            {
+//                String title = rs.getString("Title");
+//                String artist = rs.getString("Artist");
+//                String location = rs.getString("Location");
+//                int id = rs.getInt("id");
+//                songList.add(new Song(title, artist, location, id));
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return songList;
+}
     public void newPlaylist(Playlist playlistName)
     {
         String name = playlistName.getName();
