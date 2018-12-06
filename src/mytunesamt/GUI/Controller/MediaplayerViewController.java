@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -186,29 +187,8 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void searchSongs(ActionEvent event) throws IOException, SQLServerException, SQLException
     {
-        DbConnectionProvider ds = new DbConnectionProvider();
-        String inputTemp = String.valueOf(txtSearch.getText());
-        System.out.println(" " + inputTemp);
-        
-        Scanner sc = new Scanner (System.in);
-        
-        try (Connection con = ds.getConnection())
-        {
-            String name = sc.next();
-            String sql = "SELECT * FROM Songs WHERE name = '" + name + "'";
-            PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            
-            ResultSet rs = pstmt.executeQuery(sql);
-            
-            while (rs.next())
-            {
-                System.out.println("" + name);
-            }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        String input = txtSearch.getText();
+        listAllSongs.setItems(tModel.searchSongs(input));
     }
 
     @FXML

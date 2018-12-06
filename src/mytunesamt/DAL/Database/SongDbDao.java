@@ -133,4 +133,30 @@ public class SongDbDao
         }
         return wantedSong;
     }
+    
+    public List<Song> searchSongs (String input)
+    {
+        List<Song> songList = new ArrayList();
+        try (Connection con = ds.getConnection())
+        {
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Songs WHERE Title LIKE ? OR Artist LIKE ?");
+            pstmt.setString(1,"%"+input+"%");
+            pstmt.setString(2, "%"+input+"%");
+            
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next())
+            {
+                int id = rs.getInt("ID");
+                String title = rs.getString("Title");
+                String artist = rs.getString("artist");
+                String location = rs.getString("location");
+                songList.add(new Song(title, artist, location, id));
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return songList;
+    }
 }

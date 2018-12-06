@@ -8,6 +8,7 @@ package mytunesamt.GUI.Model;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +16,7 @@ import mytunesamt.BE.Playlist;
 import mytunesamt.BE.Song;
 import mytunesamt.BLL.MTLogicFacade;
 import mytunesamt.BLL.TunesManager;
+import mytunesamt.DAL.Database.SongDbDao;
 
 /**
  *
@@ -29,6 +31,7 @@ public class TunesModel
 
     public TunesModel() throws IOException, SQLException
     {
+        
         songList = FXCollections.observableArrayList();
         playlist = FXCollections.observableArrayList();
         logicLayer = new TunesManager();
@@ -91,5 +94,10 @@ public class TunesModel
     public void editPlaylist(Playlist playlist)
     {
         logicLayer.editPlaylist(playlist);
+    }
+    
+    public ObservableList<Song> searchSongs(String input) throws SQLException
+    {
+        return FXCollections.observableArrayList(logicLayer.searchSongs(input));
     }
 }

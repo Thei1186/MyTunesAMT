@@ -37,4 +37,6 @@ public interface MTLogicFacade
     
     void editPlaylist(Playlist playlist);
     
+    List<Song> searchSongs (String input);
+    
 }
