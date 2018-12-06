@@ -89,4 +89,10 @@ public class TunesManager implements MTLogicFacade
     {
         return sDbDao.searchSongs(input);
     }
+
+    @Override
+    public void addToPlaylist(Song selectedSong, Playlist selectedPlaylist)
+    {
+      pLDbDao.addToPlaylist(selectedSong, selectedPlaylist);
+    }
 }

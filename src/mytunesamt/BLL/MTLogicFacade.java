@@ -28,15 +28,16 @@ public interface MTLogicFacade
     List<Song> getAllSongs() throws SQLException;
 
     Song getSong(Song song);
-    
-    void newPlaylist (Playlist playlist) throws SQLException;
-    
+
+    void newPlaylist(Playlist playlist) throws SQLException;
+
     List<Playlist> getAllPlaylists() throws SQLException;
-    
+
     void deletePlaylist(Playlist playlist);
-    
+
     void editPlaylist(Playlist playlist);
-    
-    List<Song> searchSongs (String input);
-    
+
+    List<Song> searchSongs(String input);
+
+    void addToPlaylist(Song selectedSong, Playlist selectedPlaylist);
 }

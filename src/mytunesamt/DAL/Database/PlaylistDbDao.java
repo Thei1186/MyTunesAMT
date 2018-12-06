@@ -5,7 +5,6 @@
  */
 package mytunesamt.DAL.Database;
 
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,39 +16,50 @@ import java.util.List;
 import mytunesamt.BE.Playlist;
 import mytunesamt.BE.Song;
 
-
 public class PlaylistDbDao
 {
-    
+
     DbConnectionProvider ds;
 
     public PlaylistDbDao() throws IOException
     {
-    ds = new DbConnectionProvider();
+        ds = new DbConnectionProvider();
     }
-    
-    
-    public void newPlaylist (Playlist playlistName)
-    {       
-         String name = playlistName.getName();
+
+    public void addToPlaylist(Song selectedSong, Playlist selectedPlaylist)
+    {
+        try(Connection con = ds.getConnection())
+        {
+            String sql = " INSERT INTO PlaylistSongs VALUES (?, ?)";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, selectedPlaylist.getId());
+            pstmt.setInt(2, selectedSong.getId());
+//            pstmt.setInt(3, );
+            pstmt.execute();
             
-         
-         try (Connection con = ds.getConnection())
-         {
-             String sql = "INSERT INTO Playlist VALUES (?)";
-             PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-             pstmt.setString(1, name);
-             
-             pstmt.execute();
-             
-             
-         }
-         catch (Exception e)
-         {
-             e.printStackTrace();
-         }
+        } catch (Exception e)
+        {
+        }
     }
-    
+
+    public void newPlaylist(Playlist playlistName)
+    {
+        String name = playlistName.getName();
+
+        try (Connection con = ds.getConnection())
+        {
+            String sql = "INSERT INTO Playlist VALUES (?)";
+            PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, name);
+
+            pstmt.execute();
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     public List<Playlist> getAllPlaylists() throws SQLException
     {
         List<Playlist> playlistList = new ArrayList<>();
@@ -70,7 +80,7 @@ public class PlaylistDbDao
         }
         return playlistList;
     }
-     
+
     public void deletePlaylist(Playlist playlist)
     {
         int id = playlist.getId();
@@ -87,7 +97,7 @@ public class PlaylistDbDao
             e.printStackTrace();
         }
     }
-    
+
     public void editPlaylist(Playlist playlist)
     {
         try (Connection con = ds.getConnection())
@@ -101,6 +111,6 @@ public class PlaylistDbDao
         } catch (Exception e)
         {
             e.printStackTrace();
-        } 
+        }
     }
 }
