@@ -40,4 +40,6 @@ public interface MTLogicFacade
     List<Song> searchSongs(String input);
 
     void addToPlaylist(Song selectedSong, Playlist selectedPlaylist);
+
+    List<Song> getAllSongsOnPlaylist(Playlist playlist);
 }

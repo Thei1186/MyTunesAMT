@@ -13,14 +13,25 @@ import java.util.List;
  */
 public class Playlist
 {
-  private List<Song> songList;   
-  private int id;
-  private String name;
+
+    private List<Song> songList;
+    private int id;
+    private String name;
 
     public Playlist(int id, String name)
     {
         this.id = id;
         this.name = name;
+    }
+
+    public void addToPlaylist(Song song)
+    {
+        songList.add(song);
+    }
+
+    public void deleteFromPlaylist(Song songToRemove)
+    {
+        songList.remove(songToRemove);
     }
 
     public List<Song> getSongList()
@@ -47,11 +58,11 @@ public class Playlist
     {
         return id;
     }
-    
+
     @Override
     public String toString()
     {
         return "" + name;
     }
-  
+
 }

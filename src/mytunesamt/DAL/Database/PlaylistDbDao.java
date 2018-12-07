@@ -28,42 +28,46 @@ public class PlaylistDbDao
 
     public void addToPlaylist(Song selectedSong, Playlist selectedPlaylist)
     {
-        try(Connection con = ds.getConnection())
+        try (Connection con = ds.getConnection())
         {
             String sql = " INSERT INTO PlaylistSongs VALUES (?, ?)";
             PreparedStatement pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, selectedPlaylist.getId());
             pstmt.setInt(2, selectedSong.getId());
-//            pstmt.setInt(3, );
+
             pstmt.execute();
-            
+
         } catch (Exception e)
         {
             e.printStackTrace();
         }
     }
-public List<Song> getAllSongsOnPlaylist()
-{
-       List<Song> songList = new ArrayList<>();
+
+    public List<Song> getAllSongsOnPlaylist(Playlist playlist)
+    {
+        List<Song> songList = new ArrayList<>();
         try (Connection con = ds.getConnection())
         {
 
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM PlaylistSongs");
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM PlaylistSongs WHERE PlaylistID = (?) ");
+            pstmt.setInt(1, playlist.getId());
+
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next())
             {
-//                String title = rs.getString("Title");
-//                String artist = rs.getString("Artist");
-//                String location = rs.getString("Location");
-//                int id = rs.getInt("id");
-//                songList.add(new Song(title, artist, location, id));
+                String title = rs.getString("Title");
+                String artist = rs.getString("Artist");
+                String location = rs.getString("Location");
+                int id = rs.getInt("id");
+                songList.add(new Song(title, artist, location, id));
             }
         } catch (Exception e)
         {
             e.printStackTrace();
         }
         return songList;
-}
+    }
+
     public void newPlaylist(Playlist playlistName)
     {
         String name = playlistName.getName();

@@ -36,8 +36,9 @@ public class TunesModel
         playlist.addAll(logicLayer.getAllPlaylists());
     }
 
-    public ObservableList<Song> getSongsOnPlaylist()
+    public ObservableList<Song> getSongsOnPlaylist(Playlist playlist)
     {
+        songsOnPlaylist = FXCollections.observableArrayList(logicLayer.getAllSongsOnPlaylist(playlist));
         return songsOnPlaylist;
     }
 
@@ -63,7 +64,7 @@ public class TunesModel
 
     public ObservableList<Song> getAllSongs() throws SQLException
     {
-        songList = FXCollections.observableList(logicLayer.getAllSongs());
+        songList = FXCollections.observableArrayList(logicLayer.getAllSongs());
         return songList;
     }
 

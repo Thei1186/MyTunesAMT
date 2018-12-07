@@ -164,7 +164,9 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void addToPlaylist(ActionEvent event)
     {
-//       songsOnPlaylist.setItems();
+        Song selectedSong = listAllSongs.getSelectionModel().getSelectedItem();
+        Playlist selectedPlaylist = listPlaylist.getSelectionModel().getSelectedItem();
+        tModel.addToPlaylist(selectedSong, selectedPlaylist);
     }
 
     @FXML

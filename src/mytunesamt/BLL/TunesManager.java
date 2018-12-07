@@ -5,7 +5,6 @@
  */
 package mytunesamt.BLL;
 
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -94,5 +93,11 @@ public class TunesManager implements MTLogicFacade
     public void addToPlaylist(Song selectedSong, Playlist selectedPlaylist)
     {
       pLDbDao.addToPlaylist(selectedSong, selectedPlaylist);
+    }
+
+    @Override
+    public List<Song> getAllSongsOnPlaylist(Playlist playlist)
+    {
+      return pLDbDao.getAllSongsOnPlaylist(playlist);
     }
 }
