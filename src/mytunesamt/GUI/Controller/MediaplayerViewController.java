@@ -24,10 +24,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import static javafx.scene.media.MediaPlayer.Status.PAUSED;
 import static javafx.scene.media.MediaPlayer.Status.PLAYING;
+import static javafx.scene.media.MediaPlayer.Status.STOPPED;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -71,7 +74,6 @@ public class MediaplayerViewController implements Initializable
 
     private String filePath;
 
-    
     /**
      * Initializes the controller class.
      */
@@ -114,8 +116,9 @@ public class MediaplayerViewController implements Initializable
         File file = new File(listAllSongs.getSelectionModel().getSelectedItem().getLocation());
         filePath = file.toURI().toString();
 
-        if (mediaPlayer == null)
+        if (mediaPlayer == null || mediaPlayer.getStatus() == STOPPED)
         {
+
             Media media = new Media(filePath);
             mediaPlayer = new MediaPlayer(media);
             mediaPlayer.play();
@@ -147,8 +150,7 @@ public class MediaplayerViewController implements Initializable
     {
         String input = txtSearch.getText();
         listAllSongs.setItems(tModel.searchSongs(input));
-        
-        
+
     }
 
     @FXML
@@ -224,6 +226,25 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void editPlaylist(ActionEvent event)
     {
+    }
+
+    /*
+ * Chooses the active playlist and shows the songs contained within
+ * @param event: 2 clicks clears the selection
+     */
+    @FXML
+    private void choosePlaylist(MouseEvent event)
+    {
+        Playlist currentPlaylist = listPlaylist.getSelectionModel().getSelectedItem();
+        songsOnPlaylist.setItems(tModel.getSongsOnPlaylist(currentPlaylist));
+        if (event.getButton().equals(MouseButton.PRIMARY))
+        {
+            if (event.getClickCount() == 2)
+            {
+                songsOnPlaylist.getItems().clear();
+                listPlaylist.getSelectionModel().clearSelection();
+            }
+        }
     }
 
 }

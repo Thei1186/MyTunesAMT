@@ -49,7 +49,7 @@ public class PlaylistDbDao
         try (Connection con = ds.getConnection())
         {
 
-            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM PlaylistSongs WHERE PlaylistID = (?) ");
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Songs INNER JOIN PlaylistSongs ON Songs.id = PlaylistSongs.SongID WHERE PlaylistID = (?) ");
             pstmt.setInt(1, playlist.getId());
 
             ResultSet rs = pstmt.executeQuery();
