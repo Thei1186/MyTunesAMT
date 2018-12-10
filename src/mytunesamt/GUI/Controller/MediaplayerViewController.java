@@ -219,11 +219,16 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void editSong(ActionEvent event)
     {
+        
+        String code = JOptionPane.showInputDialog(null, "song to edit", "Edit", JOptionPane.OK_OPTION);
+        tModel.editSong(listAllSongs.getSelectionModel().getSelectedItem());
     }
 
     @FXML
     private void editPlaylist(ActionEvent event)
     {
+        String code = JOptionPane.showInputDialog(null, "playlist to edit", "Edit", JOptionPane.OK_OPTION);
+        tModel.editPlaylist(listPlaylist.getSelectionModel().getSelectedItem());
     }
 
 }

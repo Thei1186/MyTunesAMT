@@ -56,10 +56,10 @@ public class SongDbDao
     {
         try (Connection con = ds.getConnection())
         {
-            PreparedStatement pstmt = con.prepareStatement("UPDATE Songs SET Title = (?), Artist = (?), Location = (?) WHERE ID = (?)");
+            PreparedStatement pstmt = con.prepareStatement("UPDATE Songs SET Title = (?) WHERE ID = " + song.getId());
             pstmt.setString(1, song.getTitle());
-            pstmt.setString(2, song.getArtist());
-            pstmt.setString(3, song.getLocation());
+//            pstmt.setString(2, song.getArtist());
+//            pstmt.setString(3, song.getLocation());
             pstmt.execute();
             pstmt.close();
 
