@@ -32,8 +32,8 @@ public class TunesModel
         songList = FXCollections.observableArrayList();
         playlist = FXCollections.observableArrayList();
         logicLayer = new TunesManager();
-        songList.addAll(logicLayer.getAllSongs());
-        playlist.addAll(logicLayer.getAllPlaylists());
+//        songList.addAll(logicLayer.getAllSongs());
+//        playlist.addAll(logicLayer.getAllPlaylists());
     }
 
     public ObservableList<Song> getSongsOnPlaylist(Playlist playlist)
@@ -73,7 +73,7 @@ public class TunesModel
         return logicLayer.getSong(song);
     }
 
-    public ObservableList<Playlist> getPlaylists()
+    public ObservableList<Playlist> getPlaylist()
     {
         return playlist;
     }
