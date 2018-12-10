@@ -74,18 +74,21 @@ public class MediaplayerViewController implements Initializable
 
     private String filePath;
 
-    /**
-     * Initializes the controller class.
-     */
+    
     @Override
-    public void initialize(URL url, ResourceBundle rb)
+    public void initialize(URL url, ResourceBundle rb) 
     {
+        
 
         try
         {
+            tModel = new TunesModel();
             listAllSongs.setItems(tModel.getAllSongs());
             listPlaylist.setItems(tModel.getAllPlaylists());
         } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        } catch (IOException ex)
         {
             ex.printStackTrace();
         }
@@ -94,7 +97,7 @@ public class MediaplayerViewController implements Initializable
 
     public MediaplayerViewController() throws IOException, SQLException
     {
-        tModel = new TunesModel();
+        
 
     }
 
@@ -102,10 +105,12 @@ public class MediaplayerViewController implements Initializable
     private void deleteSong(ActionEvent event) throws IOException
     {
 
+        
         int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete this song?", "Delete", JOptionPane.YES_NO_OPTION);
         if (p == 0)
         {
             tModel.deleteSong(listAllSongs.getSelectionModel().getSelectedItem());
+           
         }
 
     }
@@ -141,7 +146,7 @@ public class MediaplayerViewController implements Initializable
         int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete this song?", "Delete", JOptionPane.YES_NO_OPTION);
         if (p == 0)
         {
-            // tModel.deletePlaylist(songsOnPlaylist.getSelectionModel().getSelectedItem());
+             tModel.deleteSongsOnPlaylist(songsOnPlaylist.getSelectionModel().getSelectedItem());
         }
     }
 
@@ -212,6 +217,9 @@ public class MediaplayerViewController implements Initializable
         Stage secondStage = (Stage) btnNewPlay.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/NewEditPlay.fxml"));
         Parent root = loader.load();
+        
+        NewEditPlayController newEditPlayController = loader.getController();
+        newEditPlayController.setModel(tModel);
 
         Stage stageNewSong = new Stage();
         stageNewSong.setScene(new Scene(root));

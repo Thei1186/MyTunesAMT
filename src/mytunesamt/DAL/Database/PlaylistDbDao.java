@@ -139,4 +139,26 @@ public class PlaylistDbDao
             e.printStackTrace();
         }
     }
+    
+    public void deleteSongsOnPlaylist(Song song)
+    {
+        int id = song.getId();
+        try (Connection con = ds.getConnection())
+        {
+
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM PlaylistSongs WHERE SongID=(?)");
+            pstmt.setInt(1, id);
+            pstmt.execute();
+            pstmt.close();
+            System.out.println(id + "has been deleted");
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    public void deleteAllPlaylistSongs(Playlist playlist)
+    {
+        
+    }
 }

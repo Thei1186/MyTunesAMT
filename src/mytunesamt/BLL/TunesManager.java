@@ -100,4 +100,14 @@ public class TunesManager implements MTLogicFacade
     {
       return pLDbDao.getAllSongsOnPlaylist(playlist);
     }
+    
+    public void deleteSongsOnPlaylist(Song song)
+    {
+        pLDbDao.deleteSongsOnPlaylist(song);
+    }
+    
+    public void deleteAllPlaylistSongs(Playlist playlist)
+    {
+        pLDbDao.deleteAllPlaylistSongs(playlist);
+    }
 }
