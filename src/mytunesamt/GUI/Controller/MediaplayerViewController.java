@@ -198,12 +198,9 @@ public class MediaplayerViewController implements Initializable
         NewEditSongController newEditController = loader.getController();
         newEditController.setModel(tModel);
         
-
         Stage stageNewSong = new Stage();
         stageNewSong.setScene(new Scene(root));
         
-        
-
         stageNewSong.initModality(Modality.WINDOW_MODAL);
         stageNewSong.initOwner(secondStage);
         stageNewSong.show();

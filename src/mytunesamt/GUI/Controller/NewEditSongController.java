@@ -53,7 +53,7 @@ public class NewEditSongController implements Initializable
     private Button btnSaveSong;
     @FXML
     private AnchorPane rootPane2;
-    private final TunesModel tModel;
+    private TunesModel tModel;
 
     /**
      * Initializes the controller class.
@@ -66,7 +66,7 @@ public class NewEditSongController implements Initializable
 
     public NewEditSongController() throws IOException, SQLException
     {
-        tModel = new TunesModel();
+        
     }
 
     @FXML
@@ -133,6 +133,11 @@ public class NewEditSongController implements Initializable
             e.printStackTrace();
         }
 
+    }
+    
+    public void setModel(TunesModel tModel)
+    {
+        this.tModel = tModel;
     }
 
 }
