@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -74,11 +72,11 @@ public class MediaplayerViewController implements Initializable
 
     private String filePath;
 
-    
+    private Boolean searchDone;
+
     @Override
-    public void initialize(URL url, ResourceBundle rb) 
+    public void initialize(URL url, ResourceBundle rb)
     {
-        
 
         try
         {
@@ -97,7 +95,7 @@ public class MediaplayerViewController implements Initializable
 
     public MediaplayerViewController() throws IOException, SQLException
     {
-        
+        searchDone = false;
 
     }
 
@@ -105,12 +103,11 @@ public class MediaplayerViewController implements Initializable
     private void deleteSong(ActionEvent event) throws IOException
     {
 
-        
         int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete this song?", "Delete", JOptionPane.YES_NO_OPTION);
         if (p == 0)
         {
             tModel.deleteSong(listAllSongs.getSelectionModel().getSelectedItem());
-           
+
         }
 
     }
@@ -146,24 +143,28 @@ public class MediaplayerViewController implements Initializable
         int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete this song?", "Delete", JOptionPane.YES_NO_OPTION);
         if (p == 0)
         {
-             tModel.deleteSongsOnPlaylist(songsOnPlaylist.getSelectionModel().getSelectedItem());
+            tModel.deleteSongsOnPlaylist(songsOnPlaylist.getSelectionModel().getSelectedItem());
         }
     }
 
     @FXML
     private void searchSongs(ActionEvent event) throws IOException, SQLServerException, SQLException
     {
-        String input = txtSearch.getText();
-        listAllSongs.setItems(tModel.searchSongs(input));
-        clearSongs();
-        
+        if (searchDone == false)
+        {
+            searchDone = true;
+            String input = txtSearch.getText();
+            listAllSongs.setItems(tModel.searchSongs(input));
+            btnSearch.setText("Clear");
+        } else if (searchDone == true)
+        {
+            searchDone = false;
+            btnSearch.setText("Search");
+            listAllSongs.setItems(tModel.getAllSongs());
+            txtSearch.clear();
+        }
     }
-private void clearSongs()
-{
-    txtSearch.clear();
-    btnSearch.setText("Clear");
-    
-}
+
     @FXML
     private void stopMusic(ActionEvent event)
     {
@@ -205,13 +206,13 @@ private void clearSongs()
         Stage secondStage = (Stage) btnNewSong.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/NewEditSong.fxml"));
         Parent root = loader.load();
-        
+
         NewEditSongController newEditController = loader.getController();
         newEditController.setModel(tModel);
-        
+
         Stage stageNewSong = new Stage();
         stageNewSong.setScene(new Scene(root));
-        
+
         stageNewSong.initModality(Modality.WINDOW_MODAL);
         stageNewSong.initOwner(secondStage);
         stageNewSong.show();
@@ -223,7 +224,7 @@ private void clearSongs()
         Stage secondStage = (Stage) btnNewPlay.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/NewEditPlay.fxml"));
         Parent root = loader.load();
-        
+
         NewEditPlayController newEditPlayController = loader.getController();
         newEditPlayController.setModel(tModel);
 
@@ -238,7 +239,7 @@ private void clearSongs()
     @FXML
     private void editSong(ActionEvent event)
     {
-        
+
         String code = JOptionPane.showInputDialog(null, "song to edit", "Edit", JOptionPane.OK_OPTION);
         tModel.editSong(listAllSongs.getSelectionModel().getSelectedItem());
     }
@@ -246,7 +247,7 @@ private void clearSongs()
     @FXML
     private void editPlaylist(ActionEvent event)
     {
-        String code = JOptionPane.showInputDialog(null, "playlist to edit", "Edit", JOptionPane.OK_OPTION);
+        String code = JOptionPane.showInputDialog(null, "playlist to edit", "Edit", JOptionPane.OK_OPTION);        
         tModel.editPlaylist(listPlaylist.getSelectionModel().getSelectedItem());
     }
 
