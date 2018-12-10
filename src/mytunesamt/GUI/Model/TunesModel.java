@@ -60,6 +60,7 @@ public class TunesModel
     public void deleteSong(Song song)
     {
         logicLayer.deleteSong(song);
+        this.songList.remove(song);
     }
 
     public void editSong(Song song)
@@ -96,6 +97,7 @@ public class TunesModel
     public void deletePlaylist(Playlist playlist)
     {
         logicLayer.deletePlaylist(playlist);
+        this.playlist.remove(playlist);
     }
 
     public void editPlaylist(Playlist playlist)
@@ -112,4 +114,19 @@ public class TunesModel
     {
         logicLayer.addToPlaylist(selectedSong, selectedPlaylist);
     }
+    
+     public void deleteSongsOnPlaylist(Song song)
+     {
+        logicLayer.deleteSongsOnPlaylist(song);
+        this.songsOnPlaylist.remove(song);
+        
+        
+     }
+     
+     public void deleteAllPlaylistSongs(Playlist playlist)
+     {
+         logicLayer.deleteAllPlaylistSongs(playlist);
+     }
+    
+    
 }

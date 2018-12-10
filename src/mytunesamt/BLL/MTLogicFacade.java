@@ -42,4 +42,9 @@ public interface MTLogicFacade
     void addToPlaylist(Song selectedSong, Playlist selectedPlaylist);
 
     List<Song> getAllSongsOnPlaylist(Playlist playlist);
+    
+    void deleteSongsOnPlaylist(Song song);
+    
+    void deleteAllPlaylistSongs(Playlist playlist);
+            
 }

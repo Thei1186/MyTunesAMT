@@ -76,4 +76,9 @@ public class NewEditPlayController implements Initializable
         System.out.println(" " + inputTemp);
     }
     
+    public void setModel (TunesModel tModel)
+    {
+        this.tModel = tModel;
+    }
+    
 }
