@@ -150,9 +150,15 @@ public class MediaplayerViewController implements Initializable
     {
         String input = txtSearch.getText();
         listAllSongs.setItems(tModel.searchSongs(input));
-
+        clearSongs();
+        
     }
-
+private void clearSongs()
+{
+    txtSearch.clear();
+    btnSearch.setText("Clear");
+    
+}
     @FXML
     private void stopMusic(ActionEvent event)
     {
