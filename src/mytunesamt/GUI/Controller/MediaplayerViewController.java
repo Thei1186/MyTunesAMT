@@ -87,7 +87,7 @@ public class MediaplayerViewController implements Initializable
             listPlaylist.setItems(tModel.getAllPlaylists());
         } catch (SQLException ex)
         {
-            Logger.getLogger(MediaplayerViewController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
 
     }
