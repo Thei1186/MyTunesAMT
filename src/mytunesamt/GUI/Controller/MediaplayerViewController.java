@@ -194,9 +194,15 @@ public class MediaplayerViewController implements Initializable
         Stage secondStage = (Stage) btnNewSong.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mytunesamt/GUI/View/NewEditSong.fxml"));
         Parent root = loader.load();
+        
+        NewEditSongController newEditController = loader.getController();
+        newEditController.setModel(tModel);
+        
 
         Stage stageNewSong = new Stage();
         stageNewSong.setScene(new Scene(root));
+        
+        
 
         stageNewSong.initModality(Modality.WINDOW_MODAL);
         stageNewSong.initOwner(secondStage);
