@@ -23,7 +23,7 @@ public interface MTLogicFacade
 
     void deleteSong(Song song);
 
-    void editSong(Song song);
+    void editSong(Song song, String songName);
 
     List<Song> getAllSongs() throws SQLException;
 
@@ -35,7 +35,7 @@ public interface MTLogicFacade
 
     void deletePlaylist(Playlist playlist);
 
-    void editPlaylist(Playlist playlist);
+    void editPlaylist(Playlist playlist, String playlistName);
 
     List<Song> searchSongs(String input);
 

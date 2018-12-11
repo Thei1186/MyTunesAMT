@@ -50,9 +50,9 @@ public class TunesManager implements MTLogicFacade
     }
 
     @Override
-    public void editSong(Song song)
+    public void editSong(Song song,String songName)
     {
-        sDbDao.editSong(song);
+        sDbDao.editSong(song, songName);
     }
 
     @Override
@@ -80,9 +80,9 @@ public class TunesManager implements MTLogicFacade
     }
 
     @Override
-    public void editPlaylist(Playlist playlist)
+    public void editPlaylist(Playlist playlist, String playlistName)
     {
-        pLDbDao.editPlaylist(playlist);
+        pLDbDao.editPlaylist(playlist, playlistName);
     }
 
     @Override
