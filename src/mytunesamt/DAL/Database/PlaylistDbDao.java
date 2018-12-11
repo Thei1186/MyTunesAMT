@@ -124,12 +124,12 @@ public class PlaylistDbDao
         }
     }
 
-    public void editPlaylist(Playlist playlist)
+    public void editPlaylist(Playlist playlist, String playlistName)
     {
         try (Connection con = ds.getConnection())
         {
             PreparedStatement pstmt = con.prepareStatement("UPDATE Playlist SET Name = (?) WHERE ID = (?)");
-            pstmt.setString(1, playlist.getName());
+            pstmt.setString(1, playlistName);
             pstmt.setInt(2, playlist.getId());
             pstmt.execute();
             pstmt.close();

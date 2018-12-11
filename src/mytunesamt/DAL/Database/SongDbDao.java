@@ -52,14 +52,12 @@ public class SongDbDao
         }
     }
 
-    public void editSong(Song song)
+    public void editSong(Song song, String songName)
     {
         try (Connection con = ds.getConnection())
         {
             PreparedStatement pstmt = con.prepareStatement("UPDATE Songs SET Title = (?) WHERE ID = " + song.getId());
-            pstmt.setString(1, song.getTitle());
-//            pstmt.setString(2, song.getArtist());
-//            pstmt.setString(3, song.getLocation());
+            pstmt.setString(1, songName);
             pstmt.execute();
             pstmt.close();
 

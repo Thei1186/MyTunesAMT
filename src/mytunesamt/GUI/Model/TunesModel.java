@@ -63,9 +63,9 @@ public class TunesModel
         this.songList.remove(song);
     }
 
-    public void editSong(Song song)
+    public void editSong(Song song, String songName)
     {
-        logicLayer.editSong(song);
+        logicLayer.editSong(song, songName);
     }
 
     public ObservableList<Song> getAllSongs() throws SQLException
@@ -100,9 +100,9 @@ public class TunesModel
         this.playlist.remove(playlist);
     }
 
-    public void editPlaylist(Playlist playlist)
+    public void editPlaylist(Playlist playlist, String playlistName)
     {
-        logicLayer.editPlaylist(playlist);
+        logicLayer.editPlaylist(playlist, playlistName);
     }
 
     public ObservableList<Song> searchSongs(String input) throws SQLException
