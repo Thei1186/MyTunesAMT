@@ -67,15 +67,17 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private Button btnPause;
 
+    //The fields used within the controller
     private TunesModel tModel;
     private MediaPlayer mediaPlayer;
 
     private String filePath;
 
     private Boolean searchDone;
-    
-    
 
+    /*
+    Initializes the various lists as well as the model.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -101,6 +103,9 @@ public class MediaplayerViewController implements Initializable
 
     }
 
+    /*
+    deletes the selected song. Selection is done by clicking the song to delete.
+     */
     @FXML
     private void deleteSong(ActionEvent event) throws IOException
     {
@@ -114,8 +119,9 @@ public class MediaplayerViewController implements Initializable
 
     }
 
-    
-
+    /*
+    deletes the selected playlist. Selection is done by clicking the playlist to delete.
+     */
     @FXML
     private void deletePlaylist(ActionEvent event) throws IOException
     {
@@ -126,6 +132,9 @@ public class MediaplayerViewController implements Initializable
         }
     }
 
+    /*
+    deletes the selected song from the selected playlist. Selection is done by clicking the playlist and then the song to delete.
+     */
     @FXML
     private void deleteFromPlaylist(ActionEvent event) throws IOException
     {
@@ -136,6 +145,9 @@ public class MediaplayerViewController implements Initializable
         }
     }
 
+    /*
+    searches for either artist or title and then clears the query when clicked again.
+     */
     @FXML
     private void searchSongs(ActionEvent event) throws IOException, SQLServerException, SQLException
     {
@@ -154,8 +166,9 @@ public class MediaplayerViewController implements Initializable
         }
     }
 
-    
-
+    /*
+    adds the selected song to the selected playlist. This is done by first selecting a song and a playlist before clicking the add to playlist button.
+     */
     @FXML
     private void addToPlaylist(ActionEvent event)
     {
@@ -164,8 +177,9 @@ public class MediaplayerViewController implements Initializable
         tModel.addToPlaylist(selectedSong, selectedPlaylist);
     }
 
-    
-
+    /*
+    opens a new stage wherein a new song can be added to the list of songs.
+     */
     @FXML
     private void clickNewSong(ActionEvent event) throws IOException
     {
@@ -184,6 +198,9 @@ public class MediaplayerViewController implements Initializable
         stageNewSong.show();
     }
 
+    /*
+    opens a new stage wherein a new playlist can be added to the list of playlists.
+     */
     @FXML
     private void newPlaylist(ActionEvent event) throws IOException
     {
@@ -202,18 +219,24 @@ public class MediaplayerViewController implements Initializable
         stageNewSong.show();
     }
 
+    /*
+    edits a song and gives it a new title according to the input from the user.
+     */
     @FXML
     private void editSong(ActionEvent event)
     {
-        String code = JOptionPane.showInputDialog(null, "song to edit", "Edit", JOptionPane.OK_OPTION);
-        tModel.editSong(listAllSongs.getSelectionModel().getSelectedItem(), code);
+        String newTitle = JOptionPane.showInputDialog(null, "song to edit", "Edit", JOptionPane.OK_OPTION);
+        tModel.editSong(listAllSongs.getSelectionModel().getSelectedItem(), newTitle);
     }
 
+    /*
+    edits a playlist and gives it a new name according to the input from the user.
+     */
     @FXML
     private void editPlaylist(ActionEvent event)
     {
-        String code = JOptionPane.showInputDialog(null, "playlist to edit", "Edit", JOptionPane.OK_OPTION);        
-        tModel.editPlaylist(listPlaylist.getSelectionModel().getSelectedItem(), code); 
+        String newName = JOptionPane.showInputDialog(null, "playlist to edit", "Edit", JOptionPane.OK_OPTION);
+        tModel.editPlaylist(listPlaylist.getSelectionModel().getSelectedItem(), newName);
     }
 
     /*
@@ -234,7 +257,11 @@ public class MediaplayerViewController implements Initializable
             }
         }
     }
-    
+
+    //below is the music functionality
+    /*
+    Plays the selected song
+     */
     @FXML
     private void playSong(ActionEvent event)
     {
@@ -256,7 +283,10 @@ public class MediaplayerViewController implements Initializable
 //            tModel.stop();
 //        }
     }
-    
+
+    /*
+    Stops the current song
+     */
     @FXML
     private void stopMusic(ActionEvent event)
     {
@@ -264,10 +294,13 @@ public class MediaplayerViewController implements Initializable
 //        {
 //            mediaPlayer.stop();
 //        }
-        
+
         tModel.stop();
     }
-    
+
+    /*
+    pauses the current song and resumes it if pressed while paused
+     */
     @FXML
     private void pauseSong(ActionEvent event)
     {
@@ -286,12 +319,18 @@ public class MediaplayerViewController implements Initializable
         tModel.pause();
     }
 
+    /*
+    plays the previous song on the list
+     */
     @FXML
     private void previousSong(ActionEvent event)
     {
         tModel.previous();
     }
 
+    /*
+    plays the next song on the list
+     */
     @FXML
     private void nextSong(ActionEvent event)
     {

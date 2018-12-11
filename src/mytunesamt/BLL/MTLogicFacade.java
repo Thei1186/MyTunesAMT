@@ -20,6 +20,10 @@ import mytunesamt.BE.Song;
 public interface MTLogicFacade
 {
 
+    /*
+    adds a song to the list of songs
+    @param song
+     */
     void addSong(Song song) throws SQLException;
 
     void deleteSong(Song song);
@@ -43,23 +47,23 @@ public interface MTLogicFacade
     void addToPlaylist(Song selectedSong, Playlist selectedPlaylist);
 
     List<Song> getAllSongsOnPlaylist(Playlist playlist);
-    
+
     void deleteSongsOnPlaylist(Song song);
-    
+
     void deleteAllPlaylistSongs(Playlist playlist);
-    
+
     void play(int playSongNr, ObservableList<Song> songsToPlay);
-    
+
     void stop();
-    
+
     void pause();
-    
+
     void previous();
-    
+
     void next();
-    
+
     void resume();
-    
+
     void setVolume(double volume);
-            
+
 }

@@ -36,7 +36,7 @@ public class SongDbDao
         String artist = song.getArtist();
         String title = song.getTitle();
         String location = song.getLocation();
-        
+
         try (Connection con = ds.getConnection())
         {
             String sql = "INSERT INTO Songs VALUES(?, ?, ?)";
@@ -114,7 +114,7 @@ public class SongDbDao
         {
             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Songs WHERE ID = (?)");
             pstmt.setInt(1, ID);
-            
+
             ResultSet rs = pstmt.executeQuery();
             while (rs.next())
             {
@@ -131,16 +131,16 @@ public class SongDbDao
         }
         return wantedSong;
     }
-    
-    public List<Song> searchSongs (String input)
+
+    public List<Song> searchSongs(String input)
     {
         List<Song> songList = new ArrayList();
         try (Connection con = ds.getConnection())
         {
             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Songs WHERE Title LIKE ? OR Artist LIKE ?");
-            pstmt.setString(1,"%"+input+"%");
-            pstmt.setString(2, "%"+input+"%");
-            
+            pstmt.setString(1, "%" + input + "%");
+            pstmt.setString(2, "%" + input + "%");
+
             ResultSet rs = pstmt.executeQuery();
             while (rs.next())
             {
@@ -150,8 +150,7 @@ public class SongDbDao
                 String location = rs.getString("location");
                 songList.add(new Song(title, artist, location, id));
             }
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }

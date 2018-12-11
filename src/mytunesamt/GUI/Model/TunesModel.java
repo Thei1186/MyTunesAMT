@@ -37,74 +37,112 @@ public class TunesModel
 //        playlist.addAll(logicLayer.getAllPlaylists());
     }
 
+    /*
+    Gets all the songs from the logic layer and then shows them on the listview
+     */
     public ObservableList<Song> getSongsOnPlaylist(Playlist playlist)
     {
         List<Song> tempSongs = logicLayer.getAllSongsOnPlaylist(playlist);
         songsOnPlaylist.clear();
         songsOnPlaylist.addAll(tempSongs);
-        
         return songsOnPlaylist;
     }
 
+    /*
+    Returns the songs on the observableList
+     */
     public ObservableList<Song> getSongs()
     {
         return songList;
     }
 
+    /*
+    Adds a song through the logicLayer to the observableList of songs
+     */
     public void addSong(Song song) throws SQLException
     {
         logicLayer.addSong(song);
         songList.add(song);
     }
 
+    /*
+    Removes a song from the observableList 
+     */
     public void deleteSong(Song song)
     {
         logicLayer.deleteSong(song);
         this.songList.remove(song);
     }
 
+    /*
+    edits the title of a song
+     */
     public void editSong(Song song, String songName)
     {
         logicLayer.editSong(song, songName);
     }
 
+    /*
+    returns the observable song list
+     */
     public ObservableList<Song> getAllSongs() throws SQLException
     {
         return songList;
     }
 
+    /*
+    gets a specific song from the list
+     */
     public Song getSong(Song song)
     {
         return logicLayer.getSong(song);
     }
 
+    /*
+    gets a playlist from the list of playlists
+     */
     public ObservableList<Playlist> getPlaylist()
     {
         return playlist;
     }
 
+    /*
+    creates a new playlist
+     */
     public void newPlaylist(Playlist playlist) throws SQLException
     {
         logicLayer.newPlaylist(playlist);
     }
 
+    /*
+    converts the List of arraylists into an observableArrayList and then returns it
+     */
     public ObservableList<Playlist> getAllPlaylists() throws SQLException
     {
         playlist = FXCollections.observableArrayList(logicLayer.getAllPlaylists());
         return playlist;
     }
 
+    /*
+    deletes a playlist
+     */
     public void deletePlaylist(Playlist playlist)
     {
         logicLayer.deletePlaylist(playlist);
         this.playlist.remove(playlist);
     }
 
+    /*
+    changes the name of a playlist
+     */
     public void editPlaylist(Playlist playlist, String playlistName)
     {
         logicLayer.editPlaylist(playlist, playlistName);
     }
 
+    /*
+    searches for a song based on title and artist
+     */
     public ObservableList<Song> searchSongs(String input) throws SQLException
     {
         return FXCollections.observableArrayList(logicLayer.searchSongs(input));
@@ -114,52 +152,51 @@ public class TunesModel
     {
         logicLayer.addToPlaylist(selectedSong, selectedPlaylist);
     }
-    
-     public void deleteSongsOnPlaylist(Song song)
-     {
+
+    public void deleteSongsOnPlaylist(Song song)
+    {
         logicLayer.deleteSongsOnPlaylist(song);
         this.songsOnPlaylist.remove(song);
-     }
-     
-     public void deleteAllPlaylistSongs(Playlist playlist)
-     {
-         logicLayer.deleteAllPlaylistSongs(playlist);
-     }
-     
-     public void play (int playSongNr, ObservableList<Song> songsToPlay)
-     {
-         logicLayer.play(playSongNr, songsToPlay);
-     }
-     
-     public void stop ()
-     {
-         logicLayer.stop();
-     }
-     
-     public void pause ()
-     {
-         logicLayer.pause();
-     }
-     
-     public void previous ()
-     {
-         logicLayer.previous();
-     }
-     
-     public void next ()
-     {
-         logicLayer.next();
-     }
-     
-     public void resume ()
-     {
-         logicLayer.resume();
-     }
-     
-     public void setVolume (double volume)
-     {
-         logicLayer.setVolume(volume);
-     }
-    
-    
+    }
+
+    public void deleteAllPlaylistSongs(Playlist playlist)
+    {
+        logicLayer.deleteAllPlaylistSongs(playlist);
+    }
+
+    public void play(int playSongNr, ObservableList<Song> songsToPlay)
+    {
+        logicLayer.play(playSongNr, songsToPlay);
+    }
+
+    public void stop()
+    {
+        logicLayer.stop();
+    }
+
+    public void pause()
+    {
+        logicLayer.pause();
+    }
+
+    public void previous()
+    {
+        logicLayer.previous();
+    }
+
+    public void next()
+    {
+        logicLayer.next();
+    }
+
+    public void resume()
+    {
+        logicLayer.resume();
+    }
+
+    public void setVolume(double volume)
+    {
+        logicLayer.setVolume(volume);
+    }
+
 }

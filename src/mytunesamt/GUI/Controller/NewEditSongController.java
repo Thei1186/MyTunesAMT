@@ -66,9 +66,12 @@ public class NewEditSongController implements Initializable
 
     public NewEditSongController() throws IOException, SQLException
     {
-        
+
     }
 
+    /*
+    exits the stage
+     */
     @FXML
     private void cancelNewSong(ActionEvent event) throws IOException
     {
@@ -76,6 +79,9 @@ public class NewEditSongController implements Initializable
         primeStage.close();
     }
 
+    /*
+    saves the chosen song
+     */
     @FXML
     private void saveSongClick(ActionEvent event) throws IOException, SQLException
     {
@@ -92,6 +98,9 @@ public class NewEditSongController implements Initializable
 
     }
 
+    /*
+    chooses the file
+     */
     @FXML
     private void chooseFile(ActionEvent event) throws ID3Exception, IOException
     {
@@ -116,7 +125,7 @@ public class NewEditSongController implements Initializable
                     title = id3Tag.getTitle();
                     artist = id3Tag.getArtist();
                     location = mediafile.getPath();
-                } else if (tag instanceof ID3V2_3_0Tag )
+                } else if (tag instanceof ID3V2_3_0Tag)
                 {
                     ID3V2_3_0Tag id3Tag = (ID3V2_3_0Tag) tag;
                     title = id3Tag.getTitle();
@@ -134,7 +143,7 @@ public class NewEditSongController implements Initializable
         }
 
     }
-    
+
     public void setModel(TunesModel tModel)
     {
         this.tModel = tModel;
