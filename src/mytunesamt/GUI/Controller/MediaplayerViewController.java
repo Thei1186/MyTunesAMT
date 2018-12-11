@@ -73,6 +73,8 @@ public class MediaplayerViewController implements Initializable
     private String filePath;
 
     private Boolean searchDone;
+    
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -112,20 +114,7 @@ public class MediaplayerViewController implements Initializable
 
     }
 
-    @FXML
-    private void playSong(ActionEvent event)
-    {
-        File file = new File(listAllSongs.getSelectionModel().getSelectedItem().getLocation());
-        filePath = file.toURI().toString();
-
-        if (mediaPlayer == null || mediaPlayer.getStatus() == STOPPED)
-        {
-
-            Media media = new Media(filePath);
-            mediaPlayer = new MediaPlayer(media);
-            mediaPlayer.play();
-        }
-    }
+    
 
     @FXML
     private void deletePlaylist(ActionEvent event) throws IOException
@@ -165,15 +154,7 @@ public class MediaplayerViewController implements Initializable
         }
     }
 
-    @FXML
-    private void stopMusic(ActionEvent event)
-    {
-        if (mediaPlayer.getStatus() == PLAYING || mediaPlayer.getStatus() == PAUSED)
-        {
-            mediaPlayer.stop();
-        }
-
-    }
+    
 
     @FXML
     private void addToPlaylist(ActionEvent event)
@@ -183,22 +164,7 @@ public class MediaplayerViewController implements Initializable
         tModel.addToPlaylist(selectedSong, selectedPlaylist);
     }
 
-    @FXML
-    private void pauseSong(ActionEvent event)
-    {
-
-        if (mediaPlayer.getStatus() == PLAYING)
-        {
-            btnPause.setText("Resume");
-            mediaPlayer.pause();
-
-        }
-        if (mediaPlayer.getStatus() == PAUSED)
-        {
-            btnPause.setText("Pause");
-            mediaPlayer.play();
-        }
-    }
+    
 
     @FXML
     private void clickNewSong(ActionEvent event) throws IOException
@@ -267,6 +233,69 @@ public class MediaplayerViewController implements Initializable
                 listPlaylist.getSelectionModel().clearSelection();
             }
         }
+    }
+    
+    @FXML
+    private void playSong(ActionEvent event)
+    {
+        File file = new File(listAllSongs.getSelectionModel().getSelectedItem().getLocation());
+        filePath = file.toURI().toString();
+
+        if (mediaPlayer == null || mediaPlayer.getStatus() == STOPPED)
+        {
+
+            Media media = new Media(filePath);
+            mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.play();
+        }
+//        int songNr = listAllSongs.getSelectionModel().getSelectedItem()
+//        tModel.play(0, songsToPlay);
+//        
+//        if (mediaPlayer != null)
+//        {
+//            tModel.stop();
+//        }
+    }
+    
+    @FXML
+    private void stopMusic(ActionEvent event)
+    {
+//        if (mediaPlayer.getStatus() == PLAYING || mediaPlayer.getStatus() == PAUSED)
+//        {
+//            mediaPlayer.stop();
+//        }
+        
+        tModel.stop();
+    }
+    
+    @FXML
+    private void pauseSong(ActionEvent event)
+    {
+
+//        if (mediaPlayer.getStatus() == PLAYING)
+//        {
+//            btnPause.setText("Resume");
+//            mediaPlayer.pause();
+//
+//        }
+//        if (mediaPlayer.getStatus() == PAUSED)
+//        {
+//            btnPause.setText("Pause");
+//            mediaPlayer.play();
+//        }
+        tModel.pause();
+    }
+
+    @FXML
+    private void previousSong(ActionEvent event)
+    {
+        tModel.previous();
+    }
+
+    @FXML
+    private void nextSong(ActionEvent event)
+    {
+        tModel.next();
     }
 
 }

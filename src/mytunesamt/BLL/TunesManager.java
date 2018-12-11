@@ -8,6 +8,7 @@ package mytunesamt.BLL;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import javafx.collections.ObservableList;
 import mytunesamt.BE.Playlist;
 import mytunesamt.BE.Song;
 import mytunesamt.DAL.AudioPlayer;
@@ -114,6 +115,50 @@ public class TunesManager implements MTLogicFacade
     {
         pLDbDao.deleteAllPlaylistSongs(playlist);
     }
+
+    @Override
+    public void play(int playSongNr, ObservableList<Song> songsToPlay)
+    {
+        aPlayer.play(playSongNr, songsToPlay);
+    }
+
+    @Override
+    public void stop()
+    {
+        aPlayer.stop();
+    }
+
+    @Override
+    public void pause()
+    {
+        aPlayer.pause();
+    }
+
+    @Override
+    public void previous()
+    {
+        aPlayer.previous();
+    }
+
+    @Override
+    public void next()
+    {
+        aPlayer.next();
+    }
+
+    @Override
+    public void resume()
+    {
+        aPlayer.resume();
+    }
+
+    @Override
+    public void setVolume(double volume)
+    {
+        aPlayer.setVolume(volume);
+    }
+    
+    
     
     
 }

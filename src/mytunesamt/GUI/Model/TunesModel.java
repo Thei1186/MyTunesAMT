@@ -119,13 +119,46 @@ public class TunesModel
      {
         logicLayer.deleteSongsOnPlaylist(song);
         this.songsOnPlaylist.remove(song);
-        
-        
      }
      
      public void deleteAllPlaylistSongs(Playlist playlist)
      {
          logicLayer.deleteAllPlaylistSongs(playlist);
+     }
+     
+     public void play (int playSongNr, ObservableList<Song> songsToPlay)
+     {
+         logicLayer.play(playSongNr, songsToPlay);
+     }
+     
+     public void stop ()
+     {
+         logicLayer.stop();
+     }
+     
+     public void pause ()
+     {
+         logicLayer.pause();
+     }
+     
+     public void previous ()
+     {
+         logicLayer.previous();
+     }
+     
+     public void next ()
+     {
+         logicLayer.next();
+     }
+     
+     public void resume ()
+     {
+         logicLayer.resume();
+     }
+     
+     public void setVolume (double volume)
+     {
+         logicLayer.setVolume(volume);
      }
     
     

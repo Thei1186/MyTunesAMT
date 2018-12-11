@@ -9,6 +9,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import javafx.collections.ObservableList;
 import mytunesamt.BE.Playlist;
 import mytunesamt.BE.Song;
 
@@ -46,5 +47,19 @@ public interface MTLogicFacade
     void deleteSongsOnPlaylist(Song song);
     
     void deleteAllPlaylistSongs(Playlist playlist);
+    
+    void play(int playSongNr, ObservableList<Song> songsToPlay);
+    
+    void stop();
+    
+    void pause();
+    
+    void previous();
+    
+    void next();
+    
+    void resume();
+    
+    void setVolume(double volume);
             
 }
