@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.List;
 import mytunesamt.BE.Playlist;
 import mytunesamt.BE.Song;
+import mytunesamt.DAL.AudioPlayer;
 import mytunesamt.DAL.Database.PlaylistDbDao;
 import mytunesamt.DAL.Database.SongDbDao;
 
@@ -22,11 +23,12 @@ public class TunesManager implements MTLogicFacade
 
     PlaylistDbDao pLDbDao;
     SongDbDao sDbDao;
-
+    AudioPlayer aPlayer;
     public TunesManager() throws IOException
     {
         this.sDbDao = new SongDbDao();
         this.pLDbDao = new PlaylistDbDao();
+        this.aPlayer = new AudioPlayer();
     }
 
     @Override
@@ -101,13 +103,17 @@ public class TunesManager implements MTLogicFacade
       return pLDbDao.getAllSongsOnPlaylist(playlist);
     }
     
+    @Override
     public void deleteSongsOnPlaylist(Song song)
     {
         pLDbDao.deleteSongsOnPlaylist(song);
     }
     
+    @Override
     public void deleteAllPlaylistSongs(Playlist playlist)
     {
         pLDbDao.deleteAllPlaylistSongs(playlist);
     }
+    
+    
 }
