@@ -40,7 +40,7 @@ public interface MTLogicFacade
 
     void deletePlaylist(Playlist playlist);
 
-    void editPlaylist(Playlist playlist, String playlistName);
+    void editPlaylist(Playlist playlist, String playlistName) throws SQLException;
 
     List<Song> searchSongs(String input);
 
@@ -59,8 +59,6 @@ public interface MTLogicFacade
     void previous();
 
     void next();
-
-    void resume();
 
     void setVolume(double volume);
 

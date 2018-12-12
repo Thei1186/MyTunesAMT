@@ -81,7 +81,7 @@ public class TunesManager implements MTLogicFacade
     }
 
     @Override
-    public void editPlaylist(Playlist playlist, String playlistName)
+    public void editPlaylist(Playlist playlist, String playlistName) throws SQLException
     {
         pLDbDao.editPlaylist(playlist, playlistName);
     }
@@ -138,12 +138,6 @@ public class TunesManager implements MTLogicFacade
     public void next()
     {
 //        aPlayer.next();
-    }
-
-    @Override
-    public void resume()
-    {
-        aPlayer.resume();
     }
 
     @Override

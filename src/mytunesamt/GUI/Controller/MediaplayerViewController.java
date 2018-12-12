@@ -70,10 +70,7 @@ public class MediaplayerViewController implements Initializable
 
     //The fields used within the controller
     private TunesModel tModel;
-    private MediaPlayer mediaPlayer;
-
     private String filePath;
-
     private Boolean isPaused;
     private Boolean searchDone;
 
@@ -241,10 +238,12 @@ public class MediaplayerViewController implements Initializable
     edits a playlist and gives it a new name according to the input from the user.
      */
     @FXML
-    private void editPlaylist(ActionEvent event)
+    private void editPlaylist(ActionEvent event) throws SQLException
     {
         String newName = JOptionPane.showInputDialog(null, "playlist to edit", "Edit", JOptionPane.OK_OPTION);
         tModel.editPlaylist(listPlaylist.getSelectionModel().getSelectedItem(), newName);
+        
+        listPlaylist.refresh();
     }
 
     /*
@@ -273,12 +272,16 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void playSong(ActionEvent event)
     {
+        
         if (listAllSongs.getSelectionModel().getSelectedItem() != null)
         {
             File file = new File(listAllSongs.getSelectionModel().getSelectedItem().getLocation());
             filePath = file.toURI().toString();
             Song song = listAllSongs.getSelectionModel().getSelectedItem();
             tModel.play(song);
+            String viewSong = "" + song.getTitle() + " : " + song.getArtist();
+            this.lblsong.setText(viewSong);
+            
         } 
         else if (songsOnPlaylist.getSelectionModel().getSelectedItem() != null)
         {
@@ -287,7 +290,11 @@ public class MediaplayerViewController implements Initializable
 
             Song song = songsOnPlaylist.getSelectionModel().getSelectedItem();
             tModel.play(song);
+            String viewSong = "" + song.getTitle() + " : " + song.getArtist();
+            this.lblsong.setText(viewSong);
         }
+        
+        
     }
 
     /*
@@ -331,6 +338,10 @@ public class MediaplayerViewController implements Initializable
     private void previousSong(ActionEvent event)
     {
 //        tModel.previous();
+//        if (listAllSongs.getSelectionModel().getSelectedIndex() != -1)
+//        {
+//            
+//        }
     }
 
     /*
@@ -340,6 +351,10 @@ public class MediaplayerViewController implements Initializable
     private void nextSong(ActionEvent event)
     {
 //        tModel.next();
+//        if (listAllSongs.getSelectionModel().getSelectedIndex() != -1)
+//        {
+//            
+//        }
     }
 
 

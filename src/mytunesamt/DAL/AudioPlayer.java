@@ -22,14 +22,14 @@ public class AudioPlayer
 {
 
     Media media;
-    public MediaPlayer mediaPlayer;
-    int currentSong;
+    private MediaPlayer mediaPlayer;
+//    int currentSong;
     ObservableList<Song> playSongs;
     private String filePath;
 
     public AudioPlayer()
     {
-        currentSong = 0;
+//        currentSong = 0;
     }
 
     /*
@@ -43,7 +43,6 @@ public class AudioPlayer
         filePath = file.toURI().toString();
         media = new Media(filePath);
         mediaPlayer = new MediaPlayer(media);
-        String songLabel = "" + song.getTitle() + " : " + song.getArtist();
         mediaPlayer.play();
 
     }
@@ -99,26 +98,15 @@ public class AudioPlayer
 //            currentSong++;
 //            play(currentSong, playSongs);
 //        }
-     }
-
-    /*
-    resumes a paused song
-     */
-    public void resume()
-    {
-        mediaPlayer.play();
-    }
-
+            
+            
+        }
+ 
     /*
     sets the volume of the song played
      */
     public void setVolume(double volume)
     {
         mediaPlayer.setVolume(volume);
-    }
-    
-    public void playPlaylist (Playlist playlist)
-    {
-        
     }
 }
