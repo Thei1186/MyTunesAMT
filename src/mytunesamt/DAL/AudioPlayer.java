@@ -1,8 +1,12 @@
 package mytunesamt.DAL;
 
+import java.io.File;
 import javafx.collections.ObservableList;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import static javafx.scene.media.MediaPlayer.Status.PAUSED;
+import static javafx.scene.media.MediaPlayer.Status.PLAYING;
+import mytunesamt.BE.Playlist;
 import mytunesamt.BE.Song;
 
 /*
@@ -21,6 +25,7 @@ public class AudioPlayer
     public MediaPlayer mediaPlayer;
     int currentSong;
     ObservableList<Song> playSongs;
+    private String filePath;
 
     public AudioPlayer()
     {
@@ -30,29 +35,16 @@ public class AudioPlayer
     /*
     Plays the chosen song and on the end chooses the next song on the list
      */
-    public void play(int playSongNr, ObservableList<Song> songsToPlay)
+    public void play(Song song)
     {
-        if (currentSong == songsToPlay.size() || currentSong == -1)
-        {
-            return;
-        }
-        String location = songsToPlay.get(playSongNr).getLocation();
-        media = new Media(location);
+        
+        String location = song.getLocation();
+        File file = new File(location);
+        filePath = file.toURI().toString();
+        media = new Media(filePath);
         mediaPlayer = new MediaPlayer(media);
-        String songLabel = "" + songsToPlay.get(playSongNr).getTitle() + " : " + songsToPlay.get(playSongNr).getArtist();
-
+        String songLabel = "" + song.getTitle() + " : " + song.getArtist();
         mediaPlayer.play();
-
-        //This tells the mediaplayer to play the next song on the list
-        mediaPlayer.setOnEndOfMedia(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                currentSong++;
-                play(currentSong, playSongs);
-            }
-        });
 
     }
 
@@ -69,6 +61,17 @@ public class AudioPlayer
      */
     public void pause()
     {
+        if (mediaPlayer.getStatus() == PLAYING)
+        {
+            
+            mediaPlayer.pause();
+
+        }
+        if (mediaPlayer.getStatus() == PAUSED)
+        {
+            
+            mediaPlayer.play();
+        }
         mediaPlayer.pause();
     }
 
@@ -77,26 +80,26 @@ public class AudioPlayer
      */
     public void previous()
     {
-        if (currentSong > 0)
-        {
-            stop();
-            currentSong--;
-            play(currentSong, playSongs);
-        }
+//        if (currentSong > 0)
+//        {
+//            stop();
+//            currentSong--;
+//            play(currentSong, playSongs);
+//        }
     }
 
     /*
     plays the next song on the list
      */
     public void next()
-    {
-        if (currentSong < playSongs.size() - 1)
         {
-            stop();
-            currentSong++;
-            play(currentSong, playSongs);
-        }
-    }
+//        if (currentSong < playSongs.size() - 1)
+//        {
+//            stop();
+//            currentSong++;
+//            play(currentSong, playSongs);
+//        }
+     }
 
     /*
     resumes a paused song
@@ -112,5 +115,10 @@ public class AudioPlayer
     public void setVolume(double volume)
     {
         mediaPlayer.setVolume(volume);
+    }
+    
+    public void playPlaylist (Playlist playlist)
+    {
+        
     }
 }

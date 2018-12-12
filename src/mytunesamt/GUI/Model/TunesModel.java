@@ -14,6 +14,7 @@ import mytunesamt.BE.Playlist;
 import mytunesamt.BE.Song;
 import mytunesamt.BLL.MTLogicFacade;
 import mytunesamt.BLL.TunesManager;
+import mytunesamt.DAL.AudioPlayer;
 
 /**
  *
@@ -26,6 +27,7 @@ public class TunesModel
     private ObservableList<Song> songList;
     private ObservableList<Song> songsOnPlaylist;
     private final MTLogicFacade logicLayer;
+    private AudioPlayer aPlayer;
 
     public TunesModel() throws IOException, SQLException
     {
@@ -34,6 +36,7 @@ public class TunesModel
         playlist = FXCollections.observableArrayList();
         logicLayer = new TunesManager();
         songList.addAll(logicLayer.getAllSongs());
+        aPlayer = new AudioPlayer();
 //        playlist.addAll(logicLayer.getAllPlaylists());
     }
 
@@ -112,6 +115,7 @@ public class TunesModel
     public void newPlaylist(Playlist playlist) throws SQLException
     {
         logicLayer.newPlaylist(playlist);
+        this.playlist.add(playlist);
     }
 
     /*
@@ -151,6 +155,7 @@ public class TunesModel
     public void addToPlaylist(Song selectedSong, Playlist selectedPlaylist)
     {
         logicLayer.addToPlaylist(selectedSong, selectedPlaylist);
+        this.songsOnPlaylist.add(selectedSong);
     }
 
     public void deleteSongsOnPlaylist(Song song)
@@ -159,14 +164,9 @@ public class TunesModel
         this.songsOnPlaylist.remove(song);
     }
 
-    public void deleteAllPlaylistSongs(Playlist playlist)
+    public void play(Song song)
     {
-        logicLayer.deleteAllPlaylistSongs(playlist);
-    }
-
-    public void play(int playSongNr, ObservableList<Song> songsToPlay)
-    {
-        logicLayer.play(playSongNr, songsToPlay);
+        logicLayer.play(song);
     }
 
     public void stop()
@@ -181,12 +181,12 @@ public class TunesModel
 
     public void previous()
     {
-        logicLayer.previous();
+//        logicLayer.previous();
     }
 
     public void next()
     {
-        logicLayer.next();
+//        logicLayer.next();
     }
 
     public void resume()

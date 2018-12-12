@@ -50,9 +50,7 @@ public interface MTLogicFacade
 
     void deleteSongsOnPlaylist(Song song);
 
-    void deleteAllPlaylistSongs(Playlist playlist);
-
-    void play(int playSongNr, ObservableList<Song> songsToPlay);
+    void play(Song song);
 
     void stop();
 

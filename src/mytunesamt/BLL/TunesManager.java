@@ -109,17 +109,11 @@ public class TunesManager implements MTLogicFacade
     {
         pLDbDao.deleteSongsOnPlaylist(song);
     }
-    
-    @Override
-    public void deleteAllPlaylistSongs(Playlist playlist)
-    {
-        pLDbDao.deleteAllPlaylistSongs(playlist);
-    }
 
     @Override
-    public void play(int playSongNr, ObservableList<Song> songsToPlay)
+    public void play(Song song)
     {
-        aPlayer.play(playSongNr, songsToPlay);
+        aPlayer.play(song);
     }
 
     @Override
@@ -137,13 +131,13 @@ public class TunesManager implements MTLogicFacade
     @Override
     public void previous()
     {
-        aPlayer.previous();
+//        aPlayer.previous();
     }
 
     @Override
     public void next()
     {
-        aPlayer.next();
+//        aPlayer.next();
     }
 
     @Override
@@ -157,6 +151,8 @@ public class TunesManager implements MTLogicFacade
     {
         aPlayer.setVolume(volume);
     }
+
+   
     
     
     

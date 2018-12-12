@@ -8,11 +8,11 @@
             <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/BLL/MTLogicFacade.java</file>
             <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/GUI/Controller/NewEditSongController.java</file>
             <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/DAL/Database/SongDbDao.java</file>
-            <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/BE/Playlist.java</file>
             <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/GUI/Controller/NewEditPlayController.java</file>
             <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/BLL/TunesManager.java</file>
-            <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/BE/Song.java</file>
+            <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/DAL/AudioPlayer.java</file>
             <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/GUI/Controller/MediaplayerViewController.java</file>
+            <file>file:/C:/Users/Asvør/Desktop/Skúla/Github/MyTunesAMT/src/mytunesamt/BE/Song.java</file>
         </group>
     </open-files>
 </project-private>

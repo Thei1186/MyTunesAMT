@@ -112,7 +112,10 @@ public class PlaylistDbDao
         int id = playlist.getId();
         try (Connection con = ds.getConnection())
         {
-
+            PreparedStatement pstmt1 = con.prepareStatement("DELETE FROM PlaylistSongs WHERE PlaylistID = ?");
+            pstmt1.setInt(1, playlist.getId());
+            pstmt1.execute();
+            
             PreparedStatement pstmt = con.prepareStatement("DELETE FROM Playlist WHERE ID=(?)");
             pstmt.setInt(1, id);
             pstmt.execute();
@@ -157,8 +160,5 @@ public class PlaylistDbDao
         }
     }
     
-    public void deleteAllPlaylistSongs(Playlist playlist)
-    {
-        
-    }
+  
 }

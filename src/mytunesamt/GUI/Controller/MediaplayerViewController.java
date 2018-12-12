@@ -34,6 +34,7 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import mytunesamt.BE.Playlist;
 import mytunesamt.BE.Song;
+import mytunesamt.DAL.AudioPlayer;
 import mytunesamt.GUI.Model.TunesModel;
 
 /**
@@ -73,6 +74,7 @@ public class MediaplayerViewController implements Initializable
 
     private String filePath;
 
+    private Boolean isPaused;
     private Boolean searchDone;
 
     /*
@@ -100,7 +102,7 @@ public class MediaplayerViewController implements Initializable
     public MediaplayerViewController() throws IOException, SQLException
     {
         searchDone = false;
-
+        isPaused = false;
     }
 
     /*
@@ -128,7 +130,13 @@ public class MediaplayerViewController implements Initializable
         int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete this playlist?", "Delete", JOptionPane.YES_NO_OPTION);
         if (p == 0)
         {
-            tModel.deletePlaylist(listPlaylist.getSelectionModel().getSelectedItem());
+            Playlist pList = listPlaylist.getSelectionModel().getSelectedItem();
+     
+            if (songsOnPlaylist != null)
+            {
+                tModel.deletePlaylist(pList);
+                songsOnPlaylist.getItems().clear();
+            }
         }
     }
 
@@ -265,23 +273,21 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void playSong(ActionEvent event)
     {
-        File file = new File(listAllSongs.getSelectionModel().getSelectedItem().getLocation());
-        filePath = file.toURI().toString();
-
-        if (mediaPlayer == null || mediaPlayer.getStatus() == STOPPED)
+        if (listAllSongs.getSelectionModel().getSelectedItem() != null)
         {
+            File file = new File(listAllSongs.getSelectionModel().getSelectedItem().getLocation());
+            filePath = file.toURI().toString();
+            Song song = listAllSongs.getSelectionModel().getSelectedItem();
+            tModel.play(song);
+        } 
+        else if (songsOnPlaylist.getSelectionModel().getSelectedItem() != null)
+        {
+            File file = new File(songsOnPlaylist.getSelectionModel().getSelectedItem().getLocation());
+            filePath = file.toURI().toString();
 
-            Media media = new Media(filePath);
-            mediaPlayer = new MediaPlayer(media);
-            mediaPlayer.play();
+            Song song = songsOnPlaylist.getSelectionModel().getSelectedItem();
+            tModel.play(song);
         }
-//        int songNr = listAllSongs.getSelectionModel().getSelectedItem()
-//        tModel.play(0, songsToPlay);
-//        
-//        if (mediaPlayer != null)
-//        {
-//            tModel.stop();
-//        }
     }
 
     /*
@@ -304,19 +310,18 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void pauseSong(ActionEvent event)
     {
+        if (isPaused == false)
 
-//        if (mediaPlayer.getStatus() == PLAYING)
-//        {
-//            btnPause.setText("Resume");
-//            mediaPlayer.pause();
-//
-//        }
-//        if (mediaPlayer.getStatus() == PAUSED)
-//        {
-//            btnPause.setText("Pause");
-//            mediaPlayer.play();
-//        }
-        tModel.pause();
+        {
+            isPaused = true;
+            btnPause.setText("Resume");
+            tModel.pause();
+        } else
+        {
+            isPaused = false;
+            btnPause.setText("Pause");
+            tModel.pause();
+        }
     }
 
     /*
@@ -325,7 +330,7 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void previousSong(ActionEvent event)
     {
-        tModel.previous();
+//        tModel.previous();
     }
 
     /*
@@ -334,7 +339,8 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void nextSong(ActionEvent event)
     {
-        tModel.next();
+//        tModel.next();
     }
+
 
 }
