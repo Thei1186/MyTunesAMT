@@ -90,6 +90,9 @@ public class TunesModel
      */
     public ObservableList<Song> getAllSongs() throws SQLException
     {
+        List<Song> tempSongs = logicLayer.getAllSongs();
+        songList.clear();
+        songList.addAll(tempSongs);
         return songList;
     }
 
