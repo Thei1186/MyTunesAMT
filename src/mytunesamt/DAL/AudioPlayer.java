@@ -41,19 +41,24 @@ public class AudioPlayer
      */
     public void play(Song song)
     {
-//
-//        String location = song.getLocation();
-//        File file = new File(location);
-//        filePath = file.toURI().toString();
-//        media = new Media(filePath);
-//        mediaPlayer = new MediaPlayer(media);
-//        mediaPlayer.play();
+
+        String location = song.getLocation();
+        File file = new File(location);
+        filePath = file.toURI().toString();
+        media = new Media(filePath);
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
 
     }
 
     public void playAll(List<Song> songs, int i)
     {
-        this.currentSong = i;
+        if(mediaPlayer != null)
+        {
+            stop();
+        }
+            this.currentSong = i;
+        
         String location = songs.get(currentSong).getLocation();
         File file = new File(location);
         filePath = file.toURI().toString();

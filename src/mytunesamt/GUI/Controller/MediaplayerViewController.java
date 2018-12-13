@@ -84,7 +84,6 @@ public class MediaplayerViewController implements Initializable
             listAllSongs.setItems(tModel.getAllSongs());
             listPlaylist.setItems(tModel.getAllPlaylists());
 
-
         } catch (SQLException ex)
         {
             ex.printStackTrace();
@@ -231,15 +230,19 @@ public class MediaplayerViewController implements Initializable
     private void editSong(ActionEvent event) throws SQLException
     {
         String newTitle = JOptionPane.showInputDialog(null, "song to edit", "Edit", JOptionPane.OK_OPTION);
-        tModel.editSong(listAllSongs.getSelectionModel().getSelectedItem(), newTitle);
-
-        listAllSongs.getItems().clear();
-        listAllSongs.setItems(tModel.getAllSongs());
-        if (!songsOnPlaylist.getItems().isEmpty())
+        if (newTitle != null)
         {
-            songsOnPlaylist.getItems().clear();
-            songsOnPlaylist.setItems(tModel.getSongsOnPlaylist(currentPlaylist));
+            tModel.editSong(listAllSongs.getSelectionModel().getSelectedItem(), newTitle);
+
+            listAllSongs.getItems().clear();
+            listAllSongs.setItems(tModel.getAllSongs());
+            if (!songsOnPlaylist.getItems().isEmpty())
+            {
+                songsOnPlaylist.getItems().clear();
+                songsOnPlaylist.setItems(tModel.getSongsOnPlaylist(currentPlaylist));
+            }
         }
+
     }
 
     /*
@@ -249,10 +252,13 @@ public class MediaplayerViewController implements Initializable
     private void editPlaylist(ActionEvent event) throws SQLException
     {
         String newName = JOptionPane.showInputDialog(null, "playlist to edit", "Edit", JOptionPane.OK_OPTION);
-        tModel.editPlaylist(listPlaylist.getSelectionModel().getSelectedItem(), newName);
+        if (newName != null)
+        {
+            tModel.editPlaylist(listPlaylist.getSelectionModel().getSelectedItem(), newName);
 
-        listPlaylist.getItems().clear();
-        listPlaylist.setItems(tModel.getAllPlaylists());
+            listPlaylist.getItems().clear();
+            listPlaylist.setItems(tModel.getAllPlaylists());
+        }
     }
 
     //below is the music functionality
@@ -262,32 +268,30 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void playSong(ActionEvent event) throws SQLException
     {
-        
+
         if (listAllSongs.getSelectionModel().getSelectedItem() != null)
         {
             currentIndex = listAllSongs.getSelectionModel().getSelectedIndex();
             File file = new File(listAllSongs.getItems().get(currentIndex).getLocation());
             filePath = file.toURI().toString();
-            Song song = listAllSongs.getSelectionModel().getSelectedItem();
-            tModel.playAll(listAllSongs.getItems() ,currentIndex);
-            String viewSong = "" + listAllSongs.getItems().get(currentIndex).getTitle() +" : " + listAllSongs.getItems().get(currentIndex).getArtist();
-            
+            tModel.playAll(listAllSongs.getItems(), currentIndex);
+            String viewSong = "" + listAllSongs.getItems().get(currentIndex).getTitle() + " : " + listAllSongs.getItems().get(currentIndex).getArtist();
+
             this.lblsong.setText(viewSong);
-            
-        } 
-        else if (songsOnPlaylist.getSelectionModel().getSelectedItem() != null)
+
+        } else if (songsOnPlaylist.getSelectionModel().getSelectedItem() != null)
         {
-            File file = new File(songsOnPlaylist.getSelectionModel().getSelectedItem().getLocation());
+            currentIndex = songsOnPlaylist.getSelectionModel().getSelectedIndex();
+            File file = new File(songsOnPlaylist.getItems().get(currentIndex).getLocation());
             filePath = file.toURI().toString();
 
-            Song song = songsOnPlaylist.getSelectionModel().getSelectedItem();
-            tModel.play(song);
-            String viewSong = "" + song.getTitle() + " : " + song.getArtist();
+            tModel.playAll(songsOnPlaylist.getItems(), currentIndex);
+            String viewSong = "" + songsOnPlaylist.getItems().get(currentIndex).getTitle() + " : " + songsOnPlaylist.getItems().get(currentIndex).getArtist();
             this.lblsong.setText(viewSong);
         }
 
     }
-    
+
 
     /*
     Stops the current song
@@ -327,13 +331,21 @@ public class MediaplayerViewController implements Initializable
     plays the previous song on the list
      */
     @FXML
-    private void previousSong(ActionEvent event)
+    private void previousSong(ActionEvent event) throws SQLException
     {
-        tModel.previous();
-//        if (listAllSongs.getSelectionModel().getSelectedIndex() != -1)
-//        {
-//            
-//        }
+//        tModel.previous();
+        if (listAllSongs.getSelectionModel().getSelectedIndex() != -1)
+        {
+            stopMusic(event);
+            currentIndex--;
+            tModel.playAll(listAllSongs.getItems(), currentIndex);
+        }
+        if (songsOnPlaylist.getSelectionModel().getSelectedIndex() != -1)
+        {
+            stopMusic(event);
+            currentIndex--;
+            tModel.playAll(songsOnPlaylist.getItems(), currentIndex);
+        }
     }
 
     /*
@@ -343,10 +355,18 @@ public class MediaplayerViewController implements Initializable
     private void nextSong(ActionEvent event)
     {
 //        tModel.next();
-//        if (listAllSongs.getSelectionModel().getSelectedIndex() != -1)
-//        {
-//            
-//        }
+        if (listAllSongs.getSelectionModel().getSelectedIndex() != -1)
+        {
+            stopMusic(event);
+            currentIndex++;
+            tModel.playAll(listAllSongs.getItems(), currentIndex);
+        }
+        if (songsOnPlaylist.getSelectionModel().getSelectedIndex() != -1)
+        {
+            stopMusic(event);
+            currentIndex++;
+            tModel.playAll(songsOnPlaylist.getItems(), currentIndex);
+        }
     }
 
     /*
@@ -356,13 +376,12 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void chooseSong(MouseEvent event)
     {
-        currentSong = listAllSongs.getSelectionModel().getSelectedItem();
+        listAllSongs.getSelectionModel().getSelectedItem();
         if (event.getButton().equals(MouseButton.PRIMARY))
         {
             if (event.getClickCount() == 2)
             {
                 listAllSongs.getSelectionModel().clearSelection();
-                currentSong = null;
             }
         }
     }
@@ -374,13 +393,12 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void chooseSongOnPlaylist(MouseEvent event)
     {
-        currentSong = songsOnPlaylist.getSelectionModel().getSelectedItem();
+        songsOnPlaylist.getSelectionModel().getSelectedItem();
         if (event.getButton().equals(MouseButton.PRIMARY))
         {
             if (event.getClickCount() == 2)
             {
                 songsOnPlaylist.getSelectionModel().clearSelection();
-                currentSong = null;
             }
         }
     }
@@ -404,6 +422,5 @@ public class MediaplayerViewController implements Initializable
             }
         }
     }
-
 
 }
