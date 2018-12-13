@@ -131,7 +131,7 @@ public class TunesManager implements MTLogicFacade
     @Override
     public void previous()
     {
-//        aPlayer.previous();
+        aPlayer.previous();
     }
 
     @Override
@@ -146,7 +146,10 @@ public class TunesManager implements MTLogicFacade
         aPlayer.setVolume(volume);
     }
 
-   
+    @Override
+    public void playAll(List<Song> songs, int i) {
+       aPlayer.playAll(songs, i);
+    }
     
     
     

@@ -69,6 +69,7 @@ public class MediaplayerViewController implements Initializable
     private Boolean searchDone;
     private Playlist currentPlaylist;
     private Song currentSong;
+    private int currentIndex;
 
     /*
     Initializes the various lists as well as the model.
@@ -98,7 +99,7 @@ public class MediaplayerViewController implements Initializable
     {
         searchDone = false;
         isPaused = false;
-
+        currentIndex = 0;
     }
 
     /*
@@ -259,18 +260,20 @@ public class MediaplayerViewController implements Initializable
     Plays the selected song
      */
     @FXML
-    private void playSong(ActionEvent event)
+    private void playSong(ActionEvent event) throws SQLException
     {
-
+        
         if (listAllSongs.getSelectionModel().getSelectedItem() != null)
         {
-            File file = new File(listAllSongs.getSelectionModel().getSelectedItem().getLocation());
+            currentIndex = listAllSongs.getSelectionModel().getSelectedIndex();
+            File file = new File(listAllSongs.getItems().get(currentIndex).getLocation());
             filePath = file.toURI().toString();
             Song song = listAllSongs.getSelectionModel().getSelectedItem();
-            tModel.play(song);
-            String viewSong = "" + song.getTitle() + " : " + song.getArtist();
+            tModel.playAll(listAllSongs.getItems() ,currentIndex);
+            String viewSong = "" + listAllSongs.getItems().get(currentIndex).getTitle() +" : " + listAllSongs.getItems().get(currentIndex).getArtist();
+            
             this.lblsong.setText(viewSong);
-
+            
         } 
         else if (songsOnPlaylist.getSelectionModel().getSelectedItem() != null)
         {
@@ -326,7 +329,7 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void previousSong(ActionEvent event)
     {
-//        tModel.previous();
+        tModel.previous();
 //        if (listAllSongs.getSelectionModel().getSelectedIndex() != -1)
 //        {
 //            

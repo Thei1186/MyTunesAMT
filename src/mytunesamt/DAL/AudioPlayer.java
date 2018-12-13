@@ -29,6 +29,7 @@ public class AudioPlayer
 //    int currentSong;
     ObservableList<Song> playSongs;
     private String filePath;
+    private int currentSong;
 
     public AudioPlayer()
     {
@@ -40,35 +41,50 @@ public class AudioPlayer
      */
     public void play(Song song)
     {
-        
-        String location = song.getLocation();
-        File file = new File(location);
-        filePath = file.toURI().toString();
-        media = new Media(filePath);
-        mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.play();
+//
+//        String location = song.getLocation();
+//        File file = new File(location);
+//        filePath = file.toURI().toString();
+//        media = new Media(filePath);
+//        mediaPlayer = new MediaPlayer(media);
+//        mediaPlayer.play();
 
     }
-    
+
     public void playAll(List<Song> songs, int i)
     {
-        
-        String location = songs.get(i).getLocation();
+        this.currentSong = i;
+        String location = songs.get(currentSong).getLocation();
         File file = new File(location);
         filePath = file.toURI().toString();
         media = new Media(filePath);
-        
         mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.onEndOfMediaProperty().addListener(new ChangeListener<Runnable>() {
+        mediaPlayer.play();
+        /*mediaPlayer.onEndOfMediaProperty().addListener(new ChangeListener<Runnable>()
+        {
             @Override
             public void changed(ObservableValue<? extends Runnable> observable, Runnable oldValue, Runnable newValue)
-            {
-                mediaPlayer.stop();
-                playAll(songs, i +1);
+            {*/
+                mediaPlayer.setOnEndOfMedia(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        if (currentSong == songs.size() - 1)
+                        {
+                            currentSong = 0;
+
+                        } else
+                        {
+                            currentSong++;
+                        }
+                        playAll(songs, currentSong);
+                    }
+                });
             }
-        });
-        mediaPlayer.play();
-    }
+        //});
+
+    
 
     /*
     stops the song
@@ -85,13 +101,13 @@ public class AudioPlayer
     {
         if (mediaPlayer.getStatus() == PLAYING)
         {
-            
+
             mediaPlayer.pause();
 
         }
         if (mediaPlayer.getStatus() == PAUSED)
         {
-            
+
             mediaPlayer.play();
         }
         mediaPlayer.pause();
@@ -102,11 +118,15 @@ public class AudioPlayer
      */
     public void previous()
     {
-//        if (currentSong > 0)
+//        if (currentSong != -1)
 //        {
 //            stop();
+//            if (currentSong + 1 == playSongs.size() )
+//            {
+//                currentSong = 0;
+//            }
 //            currentSong--;
-//            play(currentSong, playSongs);
+//            playAll(playSongs, currentSong);
 //        }
     }
 
@@ -114,17 +134,16 @@ public class AudioPlayer
     plays the next song on the list
      */
     public void next()
-        {
+    {
 //        if (currentSong < playSongs.size() - 1)
 //        {
 //            stop();
 //            currentSong++;
 //            play(currentSong, playSongs);
 //        }
-            
-            
-        }
- 
+
+    }
+
     /*
     sets the volume of the song played
      */

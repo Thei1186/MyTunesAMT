@@ -167,9 +167,10 @@ public class TunesModel
         this.songsOnPlaylist.remove(song);
     }
 
-    public void playAll()
+    public void playAll(List<Song> songs, int i)
     {
         
+        logicLayer.playAll(songs, i);
     }
     
     public void play(Song song)
@@ -189,7 +190,7 @@ public class TunesModel
 
     public void previous()
     {
-//        logicLayer.previous();
+        logicLayer.previous();
     }
 
     public void next()
