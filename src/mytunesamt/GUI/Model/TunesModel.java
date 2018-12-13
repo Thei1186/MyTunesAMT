@@ -144,11 +144,7 @@ public class TunesModel
      */
     public void editPlaylist(Playlist playlist, String playlistName) throws SQLException
     {
-        List <Playlist> tempPList = logicLayer.getAllPlaylists();
-        logicLayer.editPlaylist(playlist, playlistName);
-        this.playlist.clear();
-        this.playlist.addAll(tempPList);
-        
+        logicLayer.editPlaylist(playlist, playlistName);  
     }
 
     /*
@@ -171,6 +167,11 @@ public class TunesModel
         this.songsOnPlaylist.remove(song);
     }
 
+    public void playAll()
+    {
+        
+    }
+    
     public void play(Song song)
     {
         logicLayer.play(song);

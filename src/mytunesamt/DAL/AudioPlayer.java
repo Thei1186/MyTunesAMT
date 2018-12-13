@@ -1,6 +1,9 @@
 package mytunesamt.DAL;
 
 import java.io.File;
+import java.util.List;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -45,6 +48,26 @@ public class AudioPlayer
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
 
+    }
+    
+    public void playAll(List<Song> songs, int i)
+    {
+        
+        String location = songs.get(i).getLocation();
+        File file = new File(location);
+        filePath = file.toURI().toString();
+        media = new Media(filePath);
+        
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.onEndOfMediaProperty().addListener(new ChangeListener<Runnable>() {
+            @Override
+            public void changed(ObservableValue<? extends Runnable> observable, Runnable oldValue, Runnable newValue)
+            {
+                mediaPlayer.stop();
+                playAll(songs, i +1);
+            }
+        });
+        mediaPlayer.play();
     }
 
     /*

@@ -284,6 +284,7 @@ public class MediaplayerViewController implements Initializable
         }
 
     }
+    
 
     /*
     Stops the current song
