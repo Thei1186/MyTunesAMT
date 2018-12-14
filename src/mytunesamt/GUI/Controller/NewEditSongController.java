@@ -105,7 +105,7 @@ public class NewEditSongController implements Initializable
     private void chooseFile(ActionEvent event) throws ID3Exception, IOException
     {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Select a file (mp3)", "*.mp3", "*.mp4", "*.wav");
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Select a file (mp3, wav)", "*.mp3", "*.wav");
         fileChooser.getExtensionFilters().add(filter);
         fileChooser.setTitle("Open Music File");
         Stage stage = (Stage) rootPane2.getScene().getWindow();
