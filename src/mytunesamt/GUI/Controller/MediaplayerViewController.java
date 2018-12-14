@@ -299,11 +299,6 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void stopMusic(ActionEvent event)
     {
-//        if (mediaPlayer.getStatus() == PLAYING || mediaPlayer.getStatus() == PAUSED)
-//        {
-//            mediaPlayer.stop();
-//        }
-
         tModel.stop();
     }
 

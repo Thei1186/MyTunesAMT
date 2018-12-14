@@ -56,10 +56,6 @@ public interface MTLogicFacade
 
     void pause();
 
-    void previous();
-
-    void next();
-
     void setVolume(double volume);
     
     void playAll(List<Song> songs, int i);

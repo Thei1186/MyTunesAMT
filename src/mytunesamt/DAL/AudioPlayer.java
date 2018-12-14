@@ -119,37 +119,6 @@ public class AudioPlayer
     }
 
     /*
-    plays the previous song on the list
-     */
-    public void previous()
-    {
-//        if (currentSong != -1)
-//        {
-//            stop();
-//            if (currentSong + 1 == playSongs.size() )
-//            {
-//                currentSong = 0;
-//            }
-//            currentSong--;
-//            playAll(playSongs, currentSong);
-//        }
-    }
-
-    /*
-    plays the next song on the list
-     */
-    public void next()
-    {
-//        if (currentSong < playSongs.size() - 1)
-//        {
-//            stop();
-//            currentSong++;
-//            play(currentSong, playSongs);
-//        }
-
-    }
-
-    /*
     sets the volume of the song played
      */
     public void setVolume(double volume)

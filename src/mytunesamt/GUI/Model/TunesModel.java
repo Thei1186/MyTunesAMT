@@ -188,16 +188,6 @@ public class TunesModel
         logicLayer.pause();
     }
 
-    public void previous()
-    {
-        logicLayer.previous();
-    }
-
-    public void next()
-    {
-//        logicLayer.next();
-    }
-
     public void setVolume(double volume)
     {
         logicLayer.setVolume(volume);
