@@ -23,7 +23,6 @@ public class AudioPlayer
 
     Media media;
     private MediaPlayer mediaPlayer;
-//    int currentSong;
     ObservableList<Song> playSongs;
     private String filePath;
     private int currentSong;

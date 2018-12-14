@@ -37,7 +37,6 @@ public class TunesModel
         logicLayer = new TunesManager();
         songList.addAll(logicLayer.getAllSongs());
         aPlayer = new AudioPlayer();
-//        playlist.addAll(logicLayer.getAllPlaylists());
     }
 
     /*
