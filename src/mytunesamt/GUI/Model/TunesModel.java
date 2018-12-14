@@ -154,40 +154,49 @@ public class TunesModel
     {
         return FXCollections.observableArrayList(logicLayer.searchSongs(input));
     }
-
+/*
+    adds the seected song to the selected playlist
+    */
     public void addToPlaylist(Song selectedSong, Playlist selectedPlaylist)
     {
         logicLayer.addToPlaylist(selectedSong, selectedPlaylist);
         this.songsOnPlaylist.add(selectedSong);
     }
 
+    /*
+    deletes the selected playlist song
+    */
     public void deleteSongsOnPlaylist(Song song)
     {
         logicLayer.deleteSongsOnPlaylist(song);
         this.songsOnPlaylist.remove(song);
     }
-
+/*
+    plays all songs 1 by one
+    */
     public void playAll(List<Song> songs, int i)
     {
         
         logicLayer.playAll(songs, i);
     }
     
-    public void play(Song song)
-    {
-        logicLayer.play(song);
-    }
-
+/*
+    stops the current media from playing
+    */
     public void stop()
     {
         logicLayer.stop();
     }
-
+/*
+    pauses the song or resumes it if it is currently paused
+    */
     public void pause()
     {
         logicLayer.pause();
     }
-
+/*
+    Currently not implementet
+    */
     public void setVolume(double volume)
     {
         logicLayer.setVolume(volume);

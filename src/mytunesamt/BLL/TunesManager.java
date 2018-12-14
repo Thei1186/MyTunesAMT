@@ -8,7 +8,6 @@ package mytunesamt.BLL;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import javafx.collections.ObservableList;
 import mytunesamt.BE.Playlist;
 import mytunesamt.BE.Song;
 import mytunesamt.DAL.AudioPlayer;
@@ -110,12 +109,7 @@ public class TunesManager implements MTLogicFacade
         pLDbDao.deleteSongsOnPlaylist(song);
     }
 
-    @Override
-    public void play(Song song)
-    {
-        aPlayer.play(song);
-    }
-
+    
     @Override
     public void stop()
     {

@@ -328,7 +328,6 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void previousSong(ActionEvent event) throws SQLException
     {
-//        tModel.previous();
         if (listAllSongs.getSelectionModel().getSelectedIndex() != -1)
         {
             stopMusic(event);
@@ -349,7 +348,6 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void nextSong(ActionEvent event)
     {
-//        tModel.next();
         if (listAllSongs.getSelectionModel().getSelectedIndex() != -1)
         {
             stopMusic(event);
