@@ -103,16 +103,18 @@ public class MediaplayerViewController implements Initializable
 
     /*
     deletes the selected song. Selection is done by clicking the song to delete.
+    Furthermore, this removes the song from all playlists and clears them form the listview.
      */
     @FXML
-    private void deleteSong(ActionEvent event) throws IOException
+    private void deleteSong(ActionEvent event) throws IOException, SQLException
     {
 
         int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete this song?", "Delete", JOptionPane.YES_NO_OPTION);
         if (p == 0)
         {
             tModel.deleteSong(listAllSongs.getSelectionModel().getSelectedItem());
-
+            songsOnPlaylist.getItems().clear();
+            songsOnPlaylist.setItems(tModel.getAllSongs());
         }
 
     }
@@ -131,7 +133,7 @@ public class MediaplayerViewController implements Initializable
             if (songsOnPlaylist != null)
             {
                 tModel.deletePlaylist(pList);
-                songsOnPlaylist.getItems().clear();
+                songsOnPlaylist.getItems().clear(); //clears the view of the songs on the deleted playlist
             }
         }
     }
@@ -146,6 +148,8 @@ public class MediaplayerViewController implements Initializable
         if (p == 0)
         {
             tModel.deleteSongsOnPlaylist(songsOnPlaylist.getSelectionModel().getSelectedItem());
+            songsOnPlaylist.getItems().clear();
+            songsOnPlaylist.setItems(tModel.getSongsOnPlaylist(currentPlaylist));   // gets the new list of songs minus the deleted ones
         }
     }
 
@@ -176,9 +180,15 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void addToPlaylist(ActionEvent event)
     {
+        if (listAllSongs.getSelectionModel().getSelectedItem() == null || listPlaylist.getSelectionModel().getSelectedItem() == null)
+        {
+            JOptionPane.showMessageDialog(null, "You have to select both a song to add, and a playlist to add it to.");
+            return;
+        }
         Song selectedSong = listAllSongs.getSelectionModel().getSelectedItem();
         Playlist selectedPlaylist = listPlaylist.getSelectionModel().getSelectedItem();
         tModel.addToPlaylist(selectedSong, selectedPlaylist);
+
     }
 
     /*
@@ -225,22 +235,30 @@ public class MediaplayerViewController implements Initializable
 
     /*
     edits a song and gives it a new title according to the input from the user.
+    does nothing if input equals null or an empty string
      */
     @FXML
     private void editSong(ActionEvent event) throws SQLException
     {
-        String newTitle = JOptionPane.showInputDialog(null, "song to edit", "Edit", JOptionPane.OK_OPTION);
-        if (newTitle != null)
+        if (listAllSongs.getSelectionModel().getSelectedItem() == null)
         {
-            tModel.editSong(listAllSongs.getSelectionModel().getSelectedItem(), newTitle);
+            JOptionPane.showMessageDialog(null, "You have to select a song to edit.");
+            return;
+        }
 
-            listAllSongs.getItems().clear();
-            listAllSongs.setItems(tModel.getAllSongs());
-            if (!songsOnPlaylist.getItems().isEmpty())
-            {
-                songsOnPlaylist.getItems().clear();
-                songsOnPlaylist.setItems(tModel.getSongsOnPlaylist(currentPlaylist));
-            }
+        String newTitle = JOptionPane.showInputDialog(null, "song to edit", "Edit", JOptionPane.OK_OPTION);
+        if (newTitle == null || newTitle.equals(""))
+        {
+            return;
+        }
+        tModel.editSong(listAllSongs.getSelectionModel().getSelectedItem(), newTitle);
+
+        listAllSongs.getItems().clear();
+        listAllSongs.setItems(tModel.getAllSongs());
+        if (!songsOnPlaylist.getItems().isEmpty())  //refreshes playlist songs
+        {
+            songsOnPlaylist.getItems().clear();
+            songsOnPlaylist.setItems(tModel.getSongsOnPlaylist(currentPlaylist));
         }
 
     }
@@ -251,14 +269,20 @@ public class MediaplayerViewController implements Initializable
     @FXML
     private void editPlaylist(ActionEvent event) throws SQLException
     {
-        String newName = JOptionPane.showInputDialog(null, "playlist to edit", "Edit", JOptionPane.OK_OPTION);
-        if (newName != null)
+        if (listPlaylist.getSelectionModel().getSelectedItem() == null)
         {
-            tModel.editPlaylist(listPlaylist.getSelectionModel().getSelectedItem(), newName);
-
-            listPlaylist.getItems().clear();
-            listPlaylist.setItems(tModel.getAllPlaylists());
+            JOptionPane.showMessageDialog(null, "You have to select a playlist to edit.");
+            return;
         }
+        String newName = JOptionPane.showInputDialog(null, "playlist to edit", "Edit", JOptionPane.OK_OPTION);
+        if (newName == null || newName.equals(""))
+        {
+            return;
+        }
+        tModel.editPlaylist(listPlaylist.getSelectionModel().getSelectedItem(), newName);
+
+        listPlaylist.getItems().clear();
+        listPlaylist.setItems(tModel.getAllPlaylists());
     }
 
     //below is the music functionality

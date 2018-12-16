@@ -72,6 +72,9 @@ public class SongDbDao
         int id = song.getId();
         try (Connection con = ds.getConnection())
         {
+            PreparedStatement pstmt1 = con.prepareStatement("DELETE FROM PlaylistSongs WHERE SongID = ?");
+            pstmt1.setInt(1, id);
+            pstmt1.execute();
 
             PreparedStatement pstmt = con.prepareStatement("DELETE FROM Songs WHERE ID=(?)");
             pstmt.setInt(1, id);
